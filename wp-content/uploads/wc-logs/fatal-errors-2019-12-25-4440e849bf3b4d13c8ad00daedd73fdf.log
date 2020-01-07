@@ -1,0 +1,30 @@
+2019-12-25T04:58:22+00:00 CRITICAL Call to a member function get_attributes() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 7
+
+2019-12-25T05:08:51+00:00 CRITICAL Call to a member function get_attributes() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 7
+
+2019-12-25T05:43:11+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\wordpressnew\wp-includes\class-wp-hook.php on line 265
+
+2019-12-25T05:44:32+00:00 CRITICAL Maximum execution time of 30 seconds exceeded in C:\xampp\htdocs\wordpressnew\wp-includes\formatting.php on line 5363
+
+2019-12-25T06:20:48+00:00 CRITICAL Call to a member function get_attribute() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 4
+
+2019-12-25T06:20:54+00:00 CRITICAL Call to a member function get_attribute() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 4
+
+2019-12-25T06:20:54+00:00 CRITICAL Call to a member function get_attribute() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 4
+
+2019-12-25T06:24:21+00:00 CRITICAL Call to a member function is_type() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 7
+
+2019-12-25T06:29:51+00:00 CRITICAL Call to a member function get_attributes() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 7
+
+2019-12-25T06:36:57+00:00 CRITICAL Call to a member function get_attributes() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 7
+
+2019-12-25T10:07:30+00:00 CRITICAL Call to a member function get_attribute() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 5
+
+2019-12-25T10:28:17+00:00 CRITICAL Call to undefined function woocommerce_product_loop_tags() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 20
+
+2019-12-25T10:28:35+00:00 CRITICAL Call to undefined function woocommerce_product_loop_tags() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 20
+
+2019-12-25T10:31:27+00:00 CRITICAL Object of class WP_Error could not be converted to string in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 11
+
+2019-12-25T10:37:06+00:00 CRITICAL Object of class WP_Error could not be converted to string in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 17
+

@@ -1,0 +1,8 @@
+2020-01-06T06:36:48+00:00 CRITICAL Cannot use object of type stdClass as array in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 53
+
+2020-01-06T11:09:48+00:00 CRITICAL syntax error, unexpected '?>', expecting ')' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 458
+
+2020-01-06T11:09:50+00:00 CRITICAL syntax error, unexpected '?>', expecting ')' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 458
+
+2020-01-06T11:12:34+00:00 CRITICAL syntax error, unexpected 'get_option' (T_STRING) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 25
+

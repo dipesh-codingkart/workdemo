@@ -1,0 +1,6 @@
+2019-12-26T08:14:32+00:00 CRITICAL syntax error, unexpected '?' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 173
+
+2019-12-26T08:31:43+00:00 CRITICAL Call to a member function is_in_stock() on null in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 154
+
+2019-12-26T08:31:45+00:00 CRITICAL Call to a member function is_in_stock() on null in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 154
+

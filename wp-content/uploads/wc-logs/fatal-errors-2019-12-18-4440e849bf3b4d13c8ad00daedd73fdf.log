@@ -1,0 +1,48 @@
+2019-12-18T08:05:46+00:00 CRITICAL Call to a member function get_instance_id() on array in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 104
+
+2019-12-18T08:06:27+00:00 CRITICAL Call to undefined method WC_Shipping_Zone::get_instance_id() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 105
+
+2019-12-18T08:08:24+00:00 CRITICAL Cannot use object of type WC_Shipping_Zone as array in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 105
+
+2019-12-18T08:12:34+00:00 CRITICAL Call to undefined method WC_Shipping_Zone::wc_get_shipping_classes() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 105
+
+2019-12-18T08:12:52+00:00 CRITICAL Call to undefined method WC_Shipping_Zone::wc_get_shipping_classes() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 105
+
+2019-12-18T08:15:40+00:00 CRITICAL Call to undefined method WC_Shipping_Zone::get_shipping_classes() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 107
+
+2019-12-18T08:26:29+00:00 CRITICAL Call to a member function get_formatted_location() on array in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 103
+
+2019-12-18T08:26:40+00:00 CRITICAL Call to undefined method WC_Shipping_Zone::get_shipping_classes() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 107
+
+2019-12-18T08:28:25+00:00 CRITICAL Cannot use [] for reading in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 8
+
+2019-12-18T08:51:50+00:00 CRITICAL Call to undefined method WC_Shipping_Zone::get_shipping_classes() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 107
+
+2019-12-18T09:55:08+00:00 CRITICAL Call to undefined method WC_Shipping_Zone::get_shipping_classes() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 107
+
+2019-12-18T10:05:26+00:00 CRITICAL Call to a member function get_children() on null in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 31
+
+2019-12-18T10:06:15+00:00 CRITICAL Call to a member function get_children() on array in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 31
+
+2019-12-18T10:07:11+00:00 CRITICAL Call to undefined method WC_Shipping_Zone::get_shipping_classes() in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 106
+
+2019-12-18T10:55:52+00:00 CRITICAL syntax error, unexpected '=' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 11
+
+2019-12-18T11:05:57+00:00 CRITICAL Function name must be a string in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 11
+
+2019-12-18T11:07:43+00:00 CRITICAL syntax error, unexpected '=' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 12
+
+2019-12-18T11:09:03+00:00 CRITICAL syntax error, unexpected ')', expecting ']' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 11
+
+2019-12-18T11:09:11+00:00 CRITICAL syntax error, unexpected ')', expecting ']' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 11
+
+2019-12-18T11:18:41+00:00 CRITICAL syntax error, unexpected ')' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 16
+
+2019-12-18T14:14:28+00:00 CRITICAL Uncaught exception 'Exception' with message 'Invalid product.' in C:\xampp\htdocs\wordpressnew\wp-content\plugins\woocommerce\includes\data-stores\class-wc-product-data-store-cpt.php:163
+Stack trace:
+#0 C:\xampp\htdocs\wordpressnew\wp-content\plugins\woocommerce\includes\class-wc-data-store.php(159): WC_Product_Data_Store_CPT->read(Object(WC_Product_Variable))
+#1 C:\xampp\htdocs\wordpressnew\wp-content\plugins\woocommerce\includes\abstracts\abstract-wc-product.php(135): WC_Data_Store->read(Object(WC_Product_Variable))
+#2 C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\autoselectedcountry.php(5): WC_Product->__construct('11')
+#3 {main}
+  thrown in C:\xampp\htdocs\wordpressnew\wp-content\plugins\woocommerce\includes\data-stores\class-wc-product-data-store-cpt.php on line 163
+

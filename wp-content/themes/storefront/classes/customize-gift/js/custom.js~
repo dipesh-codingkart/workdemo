@@ -1,0 +1,237 @@
+jQuery(document).ready(function($) {
+    var fromidobj = {}
+    function selecteddeliverfrom() {
+        $(".chooseformerror").hide();
+        var formid = $(this).attr("data-formid");
+        $('.firsthidefrom').hide();
+        $(".form"+formid).show();
+        fromidobj = {'fromid':formid};
+    }
+    $(".chooseform").on("click", selecteddeliverfrom);
+    $('.tablink').click(function() { /* for tab work */
+        $('.tabs').hide();
+        $('.tabcontent_COFFEE').hide();
+        if($(this).attr('data-tabid')=='COFFEE') {
+            $(".coffeedetail").show();
+             $('.tabcontent_' + $(this).attr('data-tabid')).show();
+        }
+        else {
+            $(".coffeedetail").hide();
+        }
+        if($(this).attr('data-tabid')=='GEAR') {
+            $(".geardetail").show();
+            $('.tabcontent_' + $(this).attr('data-tabid')).show();
+        }
+        else {
+            $(".geardetail").hide();
+        }
+        if($(this).attr('data-tabid')=='DELIVERY') {
+             $('.tabcontent_' + $(this).attr('data-tabid')).show();
+        }
+        if($(this).attr('data-tabid')=='TIMING') {
+            if (!$(".chooseform").is(':checked')) {
+                $(".chooseformerror").html("Please select an option to continue.");
+                $('.tabcontent_DELIVERY').show();    
+            }
+            if($(".form_fname_"+fromidobj.fromid).val()=="") {
+                $(".form_fnameerror_"+fromidobj.fromid).html("Please Enter First Name").show();
+                $('.tabcontent_DELIVERY').show();
+            }
+            else {
+                $(".form_fnameerror_"+fromidobj.fromid).hide();
+            }    
+            if($(".form_lname_"+fromidobj.fromid).val()=="") {
+                $(".form_lnameerror_"+fromidobj.fromid).html("Please Enter Last Name").show();
+                $('.tabcontent_DELIVERY').show();
+            }   
+            else {
+                $(".form_lnameerror_"+fromidobj.fromid).hide();
+            }                               
+        }
+    });
+    var alldetailobj = {}; var country_obj = {};  var grindtypeobj = {}; var gearobj = {};
+    var terms_data,productsize,productduration,productfrequency,zone_id,grindtype,ground_grind_type;    
+    function addcountryselect() {        /*for first step work*/ 
+        var zone_id = $(".mycountryclass").val();
+        var productsize = $('input[name="productsize"]:checked').val();
+        var productduration = $('input[name="productduration"]:checked').val();
+        var productfrequency = $('input[name="productfrequency"]:checked').val();
+        var grindtype = $('input[name="grind_type"]:checked').val();
+        if(grindtype=='ground') {
+            ground_grind_type = $(".ground_grind_type_value").val();
+            grindtypeobj = {"grindtype":grindtype,"ground_grind_type":ground_grind_type};
+            $(".ground_grind_type").show();
+        }
+        else {
+            grindtypeobj = {"grindtype":grindtype};
+        }
+        $(".oncountrychg").html('ADD');
+        $(".ckprodadd").removeAttr('checked');
+        $.ajax({
+            url: customurl,
+            type: "GET",
+            dataType: 'json',
+            data: {  zone_id: zone_id, productid: productid, },
+            cache: false,
+            success: function(dataResult)
+            {
+                allconditionscheck(zone_id,dataResult,productsize,productduration,productfrequency);
+                if(dataResult !=="null") {
+                    country_obj[zone_id] = dataResult;
+                }
+            }
+        });  /*for second step work*/  
+    }   
+    $(".mycountryclass").on("change",addcountryselect);
+    addcountryselect(); 
+    function variationchangeandbydefault() {   /*for first step work*/
+        var zone_id = $(".mycountryclass").val();
+        var productsize = $('input[name="productsize"]:checked').val();
+        var productduration = $('input[name="productduration"]:checked').val();
+        var productfrequency = $('input[name="productfrequency"]:checked').val();
+        var grindtype = $('input[name="grind_type"]:checked').val();
+        grindtypeobj = {"grindtype":grindtype};
+        var duration_arr = [];
+        var frequency_arr = [];    
+        if(productfrequency=='every-two-weeks') {    
+            $("#durationsh_two-months").show();
+        }
+        else {
+            $("#durationsh_two-months").hide();
+        }
+        if((productfrequency=='every-two-weeks')&&(productduration=='two-months')) {    
+            $("input[value='every-month']").attr('disabled', true);
+        }
+        else {
+            $("input[value='every-month']").attr('disabled', false);
+        }
+        if((productsize=='world-coffee-sampler')&&(productduration=='two-months')) {
+            $("input[value='one-year']").attr('checked', true);
+            $("input[value='every-month']").attr('disabled', false);
+            $("input[value='every-month']").attr('checked', true);
+            
+            if(zone_id !=='1') {
+                var productsize = 'world-coffee-sampler';
+                var productduration = 'one-year';
+                allconditionscheck(zone_id,country_obj[zone_id],productsize,productduration,productfrequency);
+            }
+            else {
+                var productsize = 'world-coffee-sampler';
+                var productduration = 'one-year';   
+                allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
+            }
+        }
+        if(productsize=='world-coffee-sampler') {
+            $("input[value='every-month']").attr('checked', true);
+            $("input[value='every-month']").attr('disabled', false);
+            $(".hideshowpdata").hide();
+             if(zone_id !=='1') {
+                var productsize = 'world-coffee-sampler';
+                var productfrequency = 'every-month';
+                allconditionscheck(zone_id,country_obj[zone_id],productsize,productduration,productfrequency);
+            }
+            else {
+                var productsize = 'world-coffee-sampler';
+                var productfrequency = 'every-month';
+                allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
+            }        
+        }
+        else  {
+           $(".hideshowpdata").show(); 
+        }    
+        var checksize = checkedvariation.filter(sizeobject => sizeobject.attributes.attribute_pa_size == productsize);
+        $.each(checksize, function (index, value) {
+            duration_arr.push(value.attributes.attribute_pa_duration);
+            frequency_arr.push(value.attributes.attribute_pa_frequency);
+        });
+        $.each(productallduration, function (index, value) {
+            if (duration_arr.indexOf(value)!=-1) {
+                if(value!=='two-months') {
+                    $("#durationsh_"+value).show();
+                }
+            }
+            else {
+                $("#durationsh_"+value).hide();
+            }
+        });
+        $.each(productallfrequency, function (index, value) {
+            if(frequency_arr.indexOf(value)!=-1) {
+                $("#frequencysh_"+value).show();
+            }
+            else {
+                $("#frequencysh_"+value).hide();
+            }
+        });
+        if(grindtype=='whole-bean') {
+            $(".ground_grind_type").hide();
+        }
+        if(grindtype=='ground') {
+            ground_grind_type = $(".ground_grind_type_value").val();
+            grindtypeobj = {"grindtype":grindtype,"ground_grind_type":ground_grind_type};
+            $(".ground_grind_type").show();
+        }
+        if(zone_id !=='1') {
+            allconditionscheck(zone_id,country_obj[zone_id],productsize,productduration,productfrequency);
+        }
+        else {
+            allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
+        } /*for third step work*/      
+    }   
+    $(".variationconnect,.ground_grind_type_value").on("change",variationchangeandbydefault);
+    function allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency) {  /*for first step work*/
+        var resultvariation = checkedvariation.filter(firstobject => firstobject.attributes.attribute_pa_size === productsize && firstobject.attributes.attribute_pa_duration === productduration && firstobject.attributes.attribute_pa_frequency === productfrequency)[0];
+        if(resultvariation) {
+            $("#showzonevariation").html("$"+resultvariation.display_price);
+             /*for second step work*/
+            var term_id = shipping_term_id[resultvariation.variation_id];
+            if(terms_data) {
+                var resultterms = terms_data.filter(termobject => termobject.term_id === term_id)[0];
+                var totalprice = (parseInt(resultvariation.display_price) + parseInt(resultterms.cost));
+                alldetailobj = { 'zone_id' : zone_id,'productsize' : productsize,'productfrequency' : productfrequency,'productduration':productduration,'totalprice':totalprice }; /*for second step work*/
+                console.log(alldetailobj); console.log(grindtypeobj);
+                $(".geartab").hide();
+                $("#showzonevariationtotal").html("total $" + totalprice);
+            }
+            else {
+                alldetailobj = { 'zone_id' : zone_id,'productsize' : productsize,'productfrequency' : productfrequency,'productduration' : productduration,'totalprice':resultvariation.display_price };
+                console.log(alldetailobj); console.log(grindtypeobj);
+                 $(".geartab").show(); /*for first step work*/
+                $("#showzonevariationtotal").html("Free shipping available");
+            }                
+        }
+    }
+    allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
+    var prodaddtol = 0; var i = 0; /* function for product add and added */
+    $("input.ckprodadd").click(function() {
+        var pdtidaddon = $(this).attr('data-id');
+        var pdtname = $(this).attr('data-pdtname');
+        if($(this).is(":checked")) {
+            prodaddtol += parseFloat($(this).val());
+            $(".changedata_"+pdtidaddon).html("ADDED");
+            gearobj[pdtidaddon] = { 'productid': pdtidaddon , 'pdtname': pdtname, 'productprice': $(this).val() }; 
+        } 
+        else {
+            prodaddtol -= parseFloat($(this).val());
+            $(".changedata_"+pdtidaddon).html("ADD");
+            delete gearobj[pdtidaddon];
+        } console.log(gearobj);
+        if(Object.keys(gearobj).length>0){
+            $(".panelform3").hide();
+        }
+        else {
+            $(".panelform3").show();
+        }
+        var addonvartotal = alldetailobj.totalprice + prodaddtol;
+        $("#showzonevariation").html("$"+addonvartotal); 
+    }); /* function for product product show by category  and sub category */
+    $('.selectprosubcat').click(function() {
+        if($(this).attr('data-subcategory')=='allproducts') {
+            $('.autohideshow').show();
+        }
+        else {
+            $('.autohideshow').hide();
+            $('.subcats_' + $(this).attr('data-subcategory')).show();
+        }
+    });
+         
+});

@@ -1,0 +1,16 @@
+2019-12-27T07:35:59+00:00 CRITICAL syntax error, unexpected ';' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 156
+
+2019-12-27T07:44:46+00:00 CRITICAL Call to undefined function get_product_top_category() in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 156
+
+2019-12-27T07:45:09+00:00 CRITICAL Call to undefined function get_product_top_category() in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 156
+
+2019-12-27T07:52:07+00:00 CRITICAL syntax error, unexpected '.' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 156
+
+2019-12-27T07:54:36+00:00 CRITICAL Cannot use object of type WP_Term as array in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 156
+
+2019-12-27T07:56:59+00:00 CRITICAL Call to undefined function woocommerce_get_term_top_most_parent() in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 161
+
+2019-12-27T11:06:24+00:00 CRITICAL syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 162
+
+2019-12-27T11:06:24+00:00 CRITICAL syntax error, unexpected '->' (T_OBJECT_OPERATOR) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 162
+

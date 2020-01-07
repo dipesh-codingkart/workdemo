@@ -1,0 +1,18 @@
+2019-12-23T07:30:05+00:00 CRITICAL Call to a member function get_children() on array in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 27
+
+2019-12-23T07:31:48+00:00 CRITICAL Call to a member function get_children() on array in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 9
+
+2019-12-23T07:33:50+00:00 CRITICAL Call to a member function get_children() on array in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 27
+
+2019-12-23T08:40:08+00:00 CRITICAL Call to a member function get_attribute() on boolean in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 24
+
+2019-12-23T08:40:54+00:00 CRITICAL Call to a member function get_attributes() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 24
+
+2019-12-23T08:40:56+00:00 CRITICAL Call to a member function get_attributes() on null in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 24
+
+2019-12-23T08:45:16+00:00 CRITICAL Cannot use object of type WP_Term as array in C:\xampp\htdocs\wordpressnew\autoselectedcountry.php on line 11
+
+2019-12-23T11:52:33+00:00 CRITICAL Call to a member function get_children() on array in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 24
+
+2019-12-23T12:09:43+00:00 CRITICAL syntax error, unexpected '}', expecting ',' or ';' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 87
+

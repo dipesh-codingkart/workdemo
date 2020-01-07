@@ -1,0 +1,94 @@
+2020-01-02T07:25:23+00:00 CRITICAL Call to undefined method WC_Shipping_Flat_Rate::init() in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 97
+
+2020-01-02T08:03:03+00:00 CRITICAL syntax error, unexpected ''tax_status'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T08:18:59+00:00 CRITICAL Call to undefined method WC_Shipping_Flat_Rate::get_flat_rates() in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 104
+
+2020-01-02T08:36:18+00:00 CRITICAL Call to undefined method WC_Shipping_Flat_Rate::init() in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 97
+
+2020-01-02T10:51:08+00:00 CRITICAL syntax error, unexpected ';', expecting ')' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 107
+
+2020-01-02T11:27:28+00:00 CRITICAL Using $this when not in object context in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T11:28:19+00:00 CRITICAL Using $this when not in object context in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T11:28:50+00:00 CRITICAL Using $this when not in object context in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T11:36:49+00:00 CRITICAL Using $this when not in object context in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T11:39:15+00:00 CRITICAL Cannot redeclare class WC_Shipping_Flat_Rate in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 85
+
+2020-01-02T11:39:17+00:00 CRITICAL Cannot redeclare class WC_Shipping_Flat_Rate in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 85
+
+2020-01-02T11:39:26+00:00 CRITICAL Cannot redeclare class WC_Shipping_Flat_Rate in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 85
+
+2020-01-02T11:39:31+00:00 CRITICAL Cannot redeclare class WC_Shipping_Flat_Rate in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 85
+
+2020-01-02T11:42:17+00:00 CRITICAL Call to undefined method WC_Shipping_Flat_Rate::initnew() in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 96
+
+2020-01-02T11:53:28+00:00 CRITICAL syntax error, unexpected '$this' (T_VARIABLE), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 86
+
+2020-01-02T11:53:29+00:00 CRITICAL syntax error, unexpected '$this' (T_VARIABLE), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 86
+
+2020-01-02T12:17:50+00:00 CRITICAL Using $this when not in object context in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 85
+
+2020-01-02T12:18:49+00:00 CRITICAL syntax error, unexpected 'public' (T_PUBLIC) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 85
+
+2020-01-02T13:07:44+00:00 CRITICAL syntax error, unexpected '}' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 127
+
+2020-01-02T13:07:45+00:00 CRITICAL syntax error, unexpected '}' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 127
+
+2020-01-02T13:12:18+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:22+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:38+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:46+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:48+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:48+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:49+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:49+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:49+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:49+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:49+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:50+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:12:50+00:00 CRITICAL syntax error, unexpected 'add_action' (T_STRING), expecting function (T_FUNCTION) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 115
+
+2020-01-02T13:56:41+00:00 CRITICAL syntax error, unexpected 'public' (T_PUBLIC) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 91
+
+2020-01-02T13:56:41+00:00 CRITICAL syntax error, unexpected 'public' (T_PUBLIC) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 91
+
+2020-01-02T13:56:45+00:00 CRITICAL syntax error, unexpected 'public' (T_PUBLIC) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 91
+
+2020-01-02T13:56:54+00:00 CRITICAL Cannot redeclare get_settings() (previously declared in C:\xampp\htdocs\wordpressnew\wp-includes\deprecated.php:829) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 157
+
+2020-01-02T14:00:39+00:00 CRITICAL Cannot redeclare init() (previously declared in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php:90) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 88
+
+2020-01-02T14:02:28+00:00 CRITICAL Cannot redeclare init() (previously declared in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php:90) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 88
+
+2020-01-02T14:46:52+00:00 CRITICAL syntax error, unexpected 'action_woocommerce_update_opti' (T_STRING) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 116
+
+2020-01-02T14:46:53+00:00 CRITICAL syntax error, unexpected 'action_woocommerce_update_opti' (T_STRING) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 116
+
+2020-01-02T14:47:21+00:00 CRITICAL syntax error, unexpected 'action_woocommerce_update_opti' (T_STRING) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 116
+
+2020-01-02T14:47:22+00:00 CRITICAL syntax error, unexpected 'action_woocommerce_update_opti' (T_STRING) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 116
+
+2020-01-02T14:47:23+00:00 CRITICAL syntax error, unexpected 'action_woocommerce_update_opti' (T_STRING) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 116
+
+2020-01-02T14:47:23+00:00 CRITICAL syntax error, unexpected 'action_woocommerce_update_opti' (T_STRING) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 116
+
+2020-01-02T14:47:23+00:00 CRITICAL syntax error, unexpected 'action_woocommerce_update_opti' (T_STRING) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 116
+
+2020-01-02T14:47:23+00:00 CRITICAL syntax error, unexpected 'action_woocommerce_update_opti' (T_STRING) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\functions.php on line 116
+
