@@ -21,6 +21,7 @@
 	$shipping_term_id = json_encode($shipping_term_id);
 	global $woocommerce;
 	$delivery_zones = WC_Shipping_Zones::get_zones();
+	$gift_sub_time = explode(':',get_option('gift_sub_time'));
 ?>
 <div class="container">
 <form id="myForm">
@@ -402,13 +403,12 @@
 			</div><!-- panel-group -->
 	</div>
 	<div class="tabs tabcontent_TIMING">
-	 <div class="datepicker"></div>
+	 	<div class="datepicker"></div>
 	</div>
 	<div class="tabs tabcontent_REVIEW">
-	  <h3>About</h3>
-	  <p>Who we are and what we do.</p>
-	</div>	
-	
+		<h3>About</h3>
+		<p>Who we are and what we do.</p>
+	</div>
 	</div>
 	<div class="col-sm-2">
 		<div class="coffeedetail">
@@ -446,8 +446,6 @@
 SUBTOTAL <span class="showzonevariationtotal" id="showzonevariation"></span>
 &nbsp;&nbsp;&nbsp; <span id="showzonevariationtotal">Free shipping available</span>
 </div>
-
-
 <script>
     var checkedvariation = <?php echo $checkedvariation ?>;
 	var productallduration = <?php echo json_encode($durationslug) ?>;
@@ -456,7 +454,7 @@ SUBTOTAL <span class="showzonevariationtotal" id="showzonevariation"></span>
 	var productid = <?php echo $productid ?>;
 	var customurl = "<?php echo get_template_directory_uri().'/autoselectedcountry.php' ?>";
 	var express_priority = "<?php echo get_option('express_priority') ?>";
+	var gifthour = <?php echo $gift_sub_time[0] ?>;
+	var giftmin = <?php echo $gift_sub_time[1] ?>;
 </script>	
-<?php	
-	get_footer();
-?>
+<?php  get_footer(); ?>

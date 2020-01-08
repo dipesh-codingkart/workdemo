@@ -7,7 +7,6 @@ jQuery(document).ready(function($) {
         fromidobj = {'fromid':formid};
         $(".form"+formid).show();
         $(".deliverydetail").hide();
-        datepickerfunct(fromidobj.fromid);
     }
     $(".chooseform").on("click", selecteddeliverfrom);
     $('.tablink').click(function() { /* for tab work */
@@ -35,6 +34,7 @@ jQuery(document).ready(function($) {
             $(".deliverydetail").show();
         }
         if($(this).attr('data-tabid')=='TIMING') { /* tab work with validation */
+             datepickerfunct(fromidobj.fromid);/* this function work for timepicker */
             if (!$(".chooseform").is(':checked')) {
                 $(".chooseformerror").html("Please select an option to continue.");
                 $('.tabcontent_DELIVERY').show();  
@@ -372,13 +372,25 @@ jQuery(document).ready(function($) {
         }    
     });
     function datepickerfunct(fromid) {
-        var availableDates = [];
         if(fromid!='3') {
-            epstrArray = express_priority.split(" ");
-            for(var epi = 0; epi < epstrArray.length; epi++) {
-                availableDates.push(epstrArray[epi]); 
-            }
-            function availabledate(date) {
+            $(".datepicker").datepicker("destroy");
+            epstrArray = express_priority.split(", ");
+            var availableDates = [];
+            var todaydate = ("0" + new Date().getMonth()+1).slice(-2) + "/" + ("0" + new Date().getDate()).slice(-2) + "/" + new Date().getFullYear();
+            epstrArray.forEach(function (val) {
+                if(todaydate<val) { /* current date se agge  ki sari dates condition */
+                    availableDates.push(val); 
+                }
+                if(todaydate==val) { /* current date  ki  condition */
+                    var dt = new Date(todaydate);                    
+                    dt.setHours(dt.getHours() + gifthour);
+                    dt.setMinutes(dt.getMinutes() + giftmin);
+                    if(dt.getTime() > new Date().getTime() ) {
+                        availableDates.push(val);
+                    }
+                }
+            });
+            function availabledate(date) { /* for available dates */
                 alldmy = ("0" + date.getMonth()+1).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear();
                 if ($.inArray(alldmy, availableDates) !== -1) {
                     return [true, "","Available"];
@@ -386,14 +398,19 @@ jQuery(document).ready(function($) {
                     return [false,"","unAvailable"];
                 }
             }
+            function get_default_date() { /* for default date */
+                var date = new Date(availableDates[0]);
+                return date;
+            }
             $(".datepicker").datepicker({
                 minDate:'0',
-                beforeShowDay: availabledate
+                beforeShowDay: availabledate,
+                defaultDate: get_default_date()
             });
         }
         else {
+            $(".datepicker").datepicker("destroy");
             $(".datepicker").datepicker({ minDate:'0' });
         }
-        console.log(availableDates);
     }    
 });
