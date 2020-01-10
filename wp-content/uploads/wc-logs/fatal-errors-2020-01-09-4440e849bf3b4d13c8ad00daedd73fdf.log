@@ -1,0 +1,22 @@
+2020-01-09T07:38:07+00:00 CRITICAL Call to a member function get() on null in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\adminmanagedate.php on line 31
+
+2020-01-09T07:47:07+00:00 CRITICAL syntax error, unexpected end of file in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\adminmanagedate.php on line 60
+
+2020-01-09T08:00:45+00:00 CRITICAL syntax error, unexpected '" class="' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\adminmanagedate.php on line 42
+
+2020-01-09T08:26:29+00:00 CRITICAL syntax error, unexpected '$x' (T_VARIABLE) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\datefuction.php on line 34
+
+2020-01-09T08:26:48+00:00 CRITICAL syntax error, unexpected '$x' (T_VARIABLE) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\datefuction.php on line 34
+
+2020-01-09T08:27:28+00:00 CRITICAL syntax error, unexpected '$x' (T_VARIABLE) in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\datefuction.php on line 34
+
+2020-01-09T08:34:01+00:00 CRITICAL syntax error, unexpected '{' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\adminmanagedate.php on line 37
+
+2020-01-09T08:34:27+00:00 CRITICAL syntax error, unexpected '{' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\adminmanagedate.php on line 37
+
+2020-01-09T08:37:25+00:00 CRITICAL syntax error, unexpected ';' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\adminmanagedate.php on line 39
+
+2020-01-09T10:01:42+00:00 CRITICAL syntax error, unexpected 'print_r' (T_STRING), expecting ',' or ';' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\classes\admin\managedate\adminmanagedate.php on line 20
+
+2020-01-09T11:26:00+00:00 CRITICAL syntax error, unexpected 'print_r' (T_STRING), expecting ',' or ';' in C:\xampp\htdocs\wordpressnew\wp-content\themes\storefront\gifttemplate.php on line 26
+

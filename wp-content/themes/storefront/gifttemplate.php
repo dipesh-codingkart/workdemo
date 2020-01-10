@@ -196,7 +196,7 @@
 										</div>
 										<div  class="form-group">
 									  		<label class="control-label" >ADDRESS LINE 1*</label>
-											<input type="text" class="form-control form_address_1"  name="form_address_1">
+											<input type="text" class="form-control form_address_1 empty_for_country_ch"  name="form_address_1">
 											<span class="form_addresserror_1"></span>
 										</div>
 										<div  class="form-group">
@@ -206,7 +206,7 @@
 										</div>
 										<div  class="form-group">
 									  		<label class="control-label" >CITY*</label>
-											<input type="text" class="form-control form_city_1"  name="form_city_1">
+											<input type="text" class="form-control form_city_1 empty_for_country_ch"  name="form_city_1">
 											<span class="form_cityerror_1"></span>
 										</div>
 										<div  class="form-group statehideshow">
@@ -217,7 +217,7 @@
 										</div>
 										<div  class="form-group">
 									  		<label class="control-label" >POST CODE*</label>
-											<input type="text" class="form-control form_zip_1"   name="form_zip_1">
+											<input type="text" class="form-control form_zip_1 empty_for_country_ch"   name="form_zip_1">
 											<span class="form_ziperror_1"></span>
 										</div>
 										<div  class="form-group">
@@ -403,7 +403,42 @@
 			</div><!-- panel-group -->
 	</div>
 	<div class="tabs tabcontent_TIMING">
-	 	<div class="datepicker"></div>
+	<?php
+		$zone_id='1'; /* by us country methods show */
+		foreach($delivery_zones[$zone_id]['shipping_methods'] as $sm_obj ) 
+		{
+			$method_id   = $sm_obj->id;
+			$instance_id = $sm_obj->get_instance_id();
+			$instance_settings = $sm_obj->instance_settings;
+			$enabled = $sm_obj->is_enabled() ? true : 0;
+			if($enabled) {
+				$data[$zone_id]['shipping_methods'][$instance_id] = array(
+					'$method_id'    => $sm_obj->id,
+					'instance_id'   => $instance_id,
+					'default_name'  => $sm_obj->get_method_title(),
+					'custom_name'   => $sm_obj->get_title(),
+				);
+				$us_shipping_mehtodid = $data[$zone_id]['shipping_methods'][$instance_id]['instance_id'];
+			} 
+			?>
+			<label <?php if(!empty(get_option( 'us_shipping_mehtod_disable' ))) { if(in_array($us_shipping_mehtodid,get_option( 'us_shipping_mehtod_disable' ))) { echo 'style="display:none;"'; } } ?> <?php if(get_option( 'us_shipping_mehtod_first' )==$us_shipping_mehtodid) { echo 'style="background-color:brown;"';	} ?>>
+				<input type="radio" class="select_shipping_method"  data-uscostofmethod="<?php echo $instance_settings['class_cost_85']; ?>" <?php if(get_option( 'us_shipping_mehtod_first' )==$us_shipping_mehtodid) {   echo 'checked';	} ?> name="us_shipping_mehtod" value="<?php echo $us_shipping_mehtodid; ?>"><?php echo $data[$zone_id]['shipping_methods'][$instance_id]['custom_name']; ?><br> <?php echo $instance_settings['shipping_msg']; ?><br>
+			<?php 
+				if($data[$zone_id]['shipping_methods'][$instance_id]['$method_id']=='free_shipping') {
+					echo 'FREE'; 
+				} else {	
+				echo "+ $".$instance_settings['class_cost_85']; 
+				}
+				if(($data[$zone_id]['shipping_methods'][$instance_id]['$method_id']=='free_shipping')&&(get_option( 'us_shipping_mehtod_first' )==$us_shipping_mehtodid)) {
+					$us_free_shipping_method_id = $us_shipping_mehtodid;
+				} 
+				?>
+			</label> &nbsp;&nbsp;
+			<?php
+		}
+	?>
+	<br><br><br>
+	<div class="datepicker"></div>
 	</div>
 	<div class="tabs tabcontent_REVIEW">
 		<h3>About</h3>
@@ -438,6 +473,10 @@
 			<p>View sample gift card here.</p>
 			<p>The email will include instructions for the recipient to start their gift subscription.</p>
 		</div>
+		<div class="timingdetail"  style="display:none;">
+			<p>The gift recipient can choose the timing for their 2nd and subsequent deliveries when they set up their account.</p>
+ 			<p>Get it in time for the holidays! View order deadlines</p>
+		</div>
 	</div>
 </form>	
 </div>
@@ -456,5 +495,8 @@ SUBTOTAL <span class="showzonevariationtotal" id="showzonevariation"></span>
 	var express_priority = "<?php echo get_option('express_priority') ?>";
 	var gifthour = <?php echo $gift_sub_time[0] ?>;
 	var giftmin = <?php echo $gift_sub_time[1] ?>;
+	var intl_calendar = "<?php echo get_option('intl_calendar') ?>";
+	var us_free_shipping_method_id = "<?php echo $us_free_shipping_method_id ?>";
+	var us_free_shipping_cal = "<?php echo get_option('us_free_shipping_cal') ?>";
 </script>	
 <?php  get_footer(); ?>

@@ -35,6 +35,9 @@ class managedate
         register_setting('managedate_funct', 'gift_sub_time');
         register_setting('managedate_funct', 'GS_non_branded_mailer_shipping_amount');
         register_setting('managedate_funct', 'intl_calendar');
+        register_setting('managedate_funct', 'us_shipping_mehtod_disable');
+        register_setting('managedate_funct', 'us_shipping_mehtod_first');
+        register_setting('managedate_funct', 'us_free_shipping_cal');
     }
 	public function managedate_funct()
 	{

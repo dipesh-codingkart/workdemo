@@ -62,47 +62,46 @@
 				'zone_locations'        => $zone_locations,
 				'shipping_methods'      => array()
 			);
-			if($shipping_zone['id'] != '1') {
-				foreach ( $shipping_zone['shipping_methods'] as $sm_obj ) 
-				{
-					$method_id   = $sm_obj->id;
-					$instance_id = $sm_obj->get_instance_id();
-					$enabled = $sm_obj->is_enabled() ? true : 0;
-					// Settings specific to each shipping method
-					$instance_settings = $sm_obj->instance_settings;
-					if( $enabled ){
-						$data[$zone_id]['shipping_methods'][$instance_id] = array(
-							'$method_id'    => $sm_obj->id,
-							'instance_id'   => $instance_id,
-							'rate_id'       => $sm_obj->get_rate_id(),
-							'default_name'  => $sm_obj->get_method_title(),
-							'custom_name'   => $sm_obj->get_title(),
-						);
-						if( $method_id == 'free_shipping' ){
-							$data[$zone_id]['shipping_methods'][$instance_id]['requires'] = $instance_settings['requires'];
-							$data[$zone_id]['shipping_methods'][$instance_id]['min_amount'] = $instance_settings['min_amount'];
-						}
-						if( $method_id == 'flat_rate' ){
-							$data[$zone_id]['shipping_methods'][$instance_id]['class_costs'] = $instance_settings['class_costs'];
-							$data[$zone_id]['shipping_methods'][$instance_id]['calculation_type'] = $instance_settings['type'];
-							//$classes_keys[0]['cost'] = $instance_settings['no_class_cost'];
-								foreach( $instance_settings as $key => $setting )
-								if ( strpos( $key, 'class_cost_') !== false )
-								{
-									$class_id = str_replace('class_cost_', '', $key );								
-									$subtotal = $classes_keys[$class_id]['cost'] = $setting;
-									if($classes_keys[$class_id]['term_id'])
-									{		
-										$terms_data[] = $classes_keys[$class_id];
-									}	
-								}
-							$data[$zone_id]['shipping_methods'][$instance_id]['classes_costs'] = $classes_keys;
-						}
+			foreach ( $shipping_zone['shipping_methods'] as $sm_obj ) 
+			{
+				$method_id   = $sm_obj->id;
+				$instance_id = $sm_obj->get_instance_id();
+				$enabled = $sm_obj->is_enabled() ? true : 0;
+				// Settings specific to each shipping method
+				$instance_settings = $sm_obj->instance_settings;
+				if($enabled) {
+					$data[$zone_id]['shipping_methods'][$instance_id] = array(
+						'$method_id'    => $sm_obj->id,
+						'instance_id'   => $instance_id,
+						'rate_id'       => $sm_obj->get_rate_id(),
+						'default_name'  => $sm_obj->get_method_title(),
+						'custom_name'   => $sm_obj->get_title(),
+					);
+					$method_ids[]= $data[$zone_id]['shipping_methods'][$instance_id];
+					if($method_id == 'free_shipping') {
+						$data[$zone_id]['shipping_methods'][$instance_id]['requires'] = $instance_settings['requires'];
+						$data[$zone_id]['shipping_methods'][$instance_id]['min_amount'] = $instance_settings['min_amount'];
 					}
+					if($method_id == 'flat_rate') {
+						$data[$zone_id]['shipping_methods'][$instance_id]['class_costs'] = $instance_settings['class_costs'];
+						$data[$zone_id]['shipping_methods'][$instance_id]['calculation_type'] = $instance_settings['type'];
+						//$classes_keys[0]['cost'] = $instance_settings['no_class_cost'];
+							foreach( $instance_settings as $key => $setting )
+							if ( strpos( $key, 'class_cost_') !== false )
+							{
+								$class_id = str_replace('class_cost_', '', $key );								
+								$subtotal = $classes_keys[$class_id]['cost'] = $setting;
+								if($classes_keys[$class_id]['term_id'])
+								{		
+									$terms_data[] = $classes_keys[$class_id];
+								}	
+							}
+						$data[$zone_id]['shipping_methods'][$instance_id]['classes_costs'] = $classes_keys;
+					}	
 				}
-			}	
-		}	
+			}
+		}
 	}
-	$data[$zones_id];		
-	echo json_encode(array('selected_country_name'=>$zone_location_name,'dataterm'=>$terms_data ,'states'=>$default_county_states));
+	$data[$zones_id];
+	echo json_encode(array('shipping_methods'=>$method_ids,'selected_country_name'=>$zone_location_name,'dataterm'=>$terms_data ,'states'=>$default_county_states));
 ?>

@@ -17,7 +17,8 @@ jQuery(document).ready(function($) {
             $('.tabcontent_' + $(this).attr('data-tabid')).show();
             $('.firsthidefrom').hide();
             $('.timingdetail').hide();
-        } else {
+        }
+        else {
             $(".coffeedetail").hide();
         }
         if($(this).attr('data-tabid')=='GEAR') {
@@ -26,13 +27,14 @@ jQuery(document).ready(function($) {
             $('.firsthidefrom').hide();
             $('.deliverydetail').hide();
             $('.timingdetail').hide();
-        } else {
+        }
+        else {
             $(".geardetail").hide();
         }
         if($(this).attr('data-tabid')=='DELIVERY') {
             $('.tabcontent_' + $(this).attr('data-tabid')).show();
             $(".deliverydetail").show();
-            $('.timingdetail').hide();
+              $('.timingdetail').hide();
         }
         if($(this).attr('data-tabid')=='TIMING') { /* tab work with validation */
              datepickerfunct(fromidobj.fromid);/* this function work for timepicker */
@@ -81,7 +83,8 @@ jQuery(document).ready(function($) {
                     }
                     $('.tabcontent_DELIVERY').show();
                     $('.timingdetail').hide();
-                }  else {
+                }
+                else {
                     $(".form_fnameerror_"+fromidobj.fromid).hide(); 
                     $(".form_lnameerror_"+fromidobj.fromid).hide(); 
                     $(".form_addresserror_"+fromidobj.fromid).hide(); 
@@ -132,7 +135,8 @@ jQuery(document).ready(function($) {
                     }
                     $('.tabcontent_DELIVERY').show();
                     $('.timingdetail').hide();
-                } else {
+                }
+                else {
                     $(".form_fnameerror_"+fromidobj.fromid).hide(); 
                     $(".form_lnameerror_"+fromidobj.fromid).hide(); 
                     $(".form_you_emailerror_"+fromidobj.fromid).hide(); 
@@ -144,7 +148,8 @@ jQuery(document).ready(function($) {
                     $(".form"+fromidobj.fromid).hide();
                     $(".deliverydetail").hide();
                     $('.timingdetail').show();
-                     sltdeliveryobj = { "fromid":fromidobj.fromid,"form_fname" : $(".form_fname_"+fromidobj.fromid).val(),"form_lname" : $(".form_lname_"+fromidobj.fromid).val(),"form_you_email" : $(".form_you_email_"+fromidobj.fromid).val(),"form_rec_fname" : $(".form_rec_fname_"+fromidobj.fromid).val(),"form_rec_lname" : $(".form_rec_lname_"+fromidobj.fromid).val(),"form_rec_email" : $(".form_rec_email_"+fromidobj.fromid).val(),"form_gift_msg" : $(".form_gift_msg_"+fromidobj.fromid).val() };
+                     sltdeliveryobj = { "fromid":fromidobj.fromid,"form_fname" : $(".form_fname_"+fromidobj.fromid).val(),"form_lname" : $(".form_lname_"+fromidobj.fromid).val(),"form_you_email" : $(".form_you_email_"+fromidobj.fromid).val(),"form_rec_fname" : $(".form_rec_fname_"+fromidobj.fromid).val(),"form_rec_lname" : $(".form_rec_lname_"+fromidobj.fromid).val(),"form_rec_email" : $(".form_rec_email_"+fromidobj.fromid).val(),"form_gift_msg" : $(".form_gift_msg_"+fromidobj.fromid).val(),};
+                    
                 }
             }   
         }
@@ -154,13 +159,13 @@ jQuery(document).ready(function($) {
             $(".rec_email").show();
             $(".cond_email_address").addClass("form_rec_email_"+fromidobj.fromid);
             $(".form_rec_emailerror_"+fromidobj.fromid).hide();
-        } else {
+        }
+        else {
             $(".rec_email").hide();
             $(".cond_email_address").removeClass("form_rec_email_"+fromidobj.fromid);
         }    
     });
-    var alldetailobj = {}; var country_obj = {};  var grindtypeobj = {}; var gearobj = {}; var addontotalobj = {}; var us_cost_methad_obj = {};
-    var non_branded_mailerobj = {};
+    var alldetailobj = {}; var country_obj = {};  var grindtypeobj = {}; var gearobj = {};
     var terms_data,productsize,productduration,productfrequency,zone_id,grindtype,ground_grind_type;    
     function addcountryselect() {        /*for first step work*/ 
         var zone_id = $(".mycountryclass").val();
@@ -195,7 +200,7 @@ jQuery(document).ready(function($) {
                 if(dataResult !=="null") {
                     country_obj[zone_id] = dataResult;
                 }
-                if(Object.keys(dataResult.states).length>0) {
+                if(Object.keys(dataResult.states).length>0){
                     if(fromidobj.fromid>0) {
                         $(".statebycountry").addClass("form_state_"+fromidobj.fromid);
                     }
@@ -207,7 +212,8 @@ jQuery(document).ready(function($) {
                         stateoutput.push('<option value="'+ key +'">'+ value +'</option>');
                     });
                     $('.statebycountry').html(stateoutput.join(''));
-                } else {
+                }
+                else {
                     $(".statebycountry").removeClass("form_state_1 form_state_2");
                     $(".statehideshow").hide(); 
                 }
@@ -230,12 +236,14 @@ jQuery(document).ready(function($) {
         var frequency_arr = [];    
         if(productfrequency=='every-two-weeks') {    
             $("#durationsh_two-months").show();
-        } else {
+        }
+        else {
             $("#durationsh_two-months").hide();
         }
         if((productfrequency=='every-two-weeks')&&(productduration=='two-months')) {    
             $("input[value='every-month']").attr('disabled', true);
-        } else {
+        }
+        else {
             $("input[value='every-month']").attr('disabled', false);
         }
         if((productsize=='world-coffee-sampler')&&(productduration=='two-months')) {
@@ -247,7 +255,8 @@ jQuery(document).ready(function($) {
                 var productsize = 'world-coffee-sampler';
                 var productduration = 'one-year';
                 allconditionscheck(zone_id,country_obj[zone_id].dataterm,productsize,productduration,productfrequency);
-            } else {
+            }
+            else {
                 var productsize = 'world-coffee-sampler';
                 var productduration = 'one-year';   
                 allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
@@ -261,12 +270,14 @@ jQuery(document).ready(function($) {
                 var productsize = 'world-coffee-sampler';
                 var productfrequency = 'every-month';
                 allconditionscheck(zone_id,country_obj[zone_id].dataterm,productsize,productduration,productfrequency);
-            } else {
+            }
+            else {
                 var productsize = 'world-coffee-sampler';
                 var productfrequency = 'every-month';
                 allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
             }        
-        } else  {
+        }
+        else  {
            $(".hideshowpdata").show(); 
         }    
         var checksize = checkedvariation.filter(sizeobject => sizeobject.attributes.attribute_pa_size == productsize);
@@ -279,14 +290,16 @@ jQuery(document).ready(function($) {
                 if(value!=='two-months') {
                     $("#durationsh_"+value).show();
                 }
-            }  else {
+            }
+            else {
                 $("#durationsh_"+value).hide();
             }
         });
         $.each(productallfrequency, function (index, value) {
             if(frequency_arr.indexOf(value)!=-1) {
                 $("#frequencysh_"+value).show();
-            } else {
+            }
+            else {
                 $("#frequencysh_"+value).hide();
             }
         });
@@ -300,7 +313,8 @@ jQuery(document).ready(function($) {
         }
         if(zone_id !=='1') {
             allconditionscheck(zone_id,country_obj[zone_id].dataterm,productsize,productduration,productfrequency);
-        } else {
+        }
+        else {
             allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
         } /*for third step work*/      
     }
@@ -308,35 +322,8 @@ jQuery(document).ready(function($) {
     function allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency) {  /*for first step work*/
         var resultvariation = checkedvariation.filter(firstobject => firstobject.attributes.attribute_pa_size === productsize && firstobject.attributes.attribute_pa_duration === productduration && firstobject.attributes.attribute_pa_frequency === productfrequency)[0];
         if(resultvariation) {
-            if((addontotalobj.prodaddtol>0)&&(zone_id=='1')) {
-                if(us_cost_methad_obj.us_cost_of_method>0) {
-                    if($('.form_non_branded_mailer').is(':checked')) {
-                        $("#showzonevariation").html("$"+(resultvariation.display_price + parseFloat(addontotalobj.prodaddtol) + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer) + parseFloat(us_cost_methad_obj.us_cost_of_method)));
-                    } else {
-                       $("#showzonevariation").html("$"+(resultvariation.display_price+parseFloat(addontotalobj.prodaddtol))); 
-                    }
-                } else {
-                    if($('.form_non_branded_mailer').is(':checked')) {
-                        $("#showzonevariation").html("$"+(resultvariation.display_price + parseFloat(addontotalobj.prodaddtol) + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer)));
-                    } else {
-                       $("#showzonevariation").html("$"+(resultvariation.display_price+parseFloat(addontotalobj.prodaddtol))); 
-                    }
-                }        
-            } else {
-                if((us_cost_methad_obj.us_cost_of_method>0)&&(zone_id=='1')) {
-                    if($('.form_non_branded_mailer').is(':checked')) { 
-                        $("#showzonevariation").html("$"+(resultvariation.display_price + parseFloat(us_cost_methad_obj.us_cost_of_method) + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer)));
-                    } else {
-                        $("#showzonevariation").html("$"+(resultvariation.display_price+parseFloat(us_cost_methad_obj.us_cost_of_method)));
-                    }
-                } else {
-                    if($('.form_non_branded_mailer').is(':checked')) {
-                        $("#showzonevariation").html("$"+(resultvariation.display_price + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer)));
-                    } else {
-                        $("#showzonevariation").html("$"+(resultvariation.display_price));
-                    }                   
-                }    
-            } /*for second step work*/
+            $("#showzonevariation").html("$"+resultvariation.display_price);
+             /*for second step work*/
             var term_id = shipping_term_id[resultvariation.variation_id];
             if(terms_data) {
                 var resultterms = terms_data.filter(termobject => termobject.term_id === term_id)[0];
@@ -345,7 +332,8 @@ jQuery(document).ready(function($) {
                 console.log(alldetailobj); console.log(grindtypeobj);
                 $(".geartab").hide();
                 $("#showzonevariationtotal").html("total $" + totalprice);
-            } else {
+            }
+            else {
                 alldetailobj = { 'zone_id' : zone_id,'productsize' : productsize,'productfrequency' : productfrequency,'productduration' : productduration,'totalprice':resultvariation.display_price };
                 console.log(alldetailobj); console.log(grindtypeobj);
                  $(".geartab").show(); /*for first step work*/
@@ -362,83 +350,51 @@ jQuery(document).ready(function($) {
             prodaddtol += parseFloat($(this).val());
             $(".changedata_"+pdtidaddon).html("ADDED");
             gearobj[pdtidaddon] = { 'productid': pdtidaddon , 'pdtname': pdtname, 'productprice': $(this).val() }; 
-        } else {
+            console.log(alldetailobj.totalprice+parseFloat(gearobj[pdtidaddon].productprice));
+        } 
+        else {
             prodaddtol -= parseFloat($(this).val());
+            /* console.log(alldetailobj.totalprice-parseFloat($(this).val())); */
             $(".changedata_"+pdtidaddon).html("ADD");
             delete gearobj[pdtidaddon];
         } console.log(gearobj);
-        if(Object.keys(gearobj).length>0) {
+        if(Object.keys(gearobj).length>0){
             $(".panelform3").hide();
-        } else {
+        }
+        else {
             $(".panelform3").show();
         }
-        if(us_cost_methad_obj.us_cost_of_method>0) {
-            if($('.form_non_branded_mailer').is(':checked')) {
-                var addonvartotal = alldetailobj.totalprice + prodaddtol + parseFloat(us_cost_methad_obj.us_cost_of_method) + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer);
-                addontotalobj = { 'totalprice' : addonvartotal ,'prodaddtol' : prodaddtol };
-                $("#showzonevariation").html("$"+addonvartotal);  console.log(addontotalobj);
-            } else {
-                var addonvartotal = alldetailobj.totalprice + prodaddtol + parseFloat(us_cost_methad_obj.us_cost_of_method);
-                addontotalobj = { 'totalprice' : addonvartotal ,'prodaddtol' : prodaddtol };
-                $("#showzonevariation").html("$"+addonvartotal);  console.log(addontotalobj);
-            }   
-        } else {
-            if($('.form_non_branded_mailer').is(':checked')) {
-                var addonvartotal = alldetailobj.totalprice + prodaddtol + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer);
-                addontotalobj = { 'totalprice' : addonvartotal ,'prodaddtol' : prodaddtol };
-                $("#showzonevariation").html("$"+addonvartotal);  console.log(addontotalobj);
-            } else {
-                var addonvartotal = alldetailobj.totalprice + prodaddtol;
-                addontotalobj = { 'totalprice' : addonvartotal ,'prodaddtol' : prodaddtol };
-                $("#showzonevariation").html("$"+addonvartotal);   console.log(addontotalobj);
-            }
-        }
+        
+        var addonvartotal = alldetailobj.totalprice + prodaddtol;
+        $("#showzonevariation").html("$"+addonvartotal); 
     }); /* function for product product show by category  and sub category */
     $('.selectprosubcat').click(function() {
         if($(this).attr('data-subcategory')=='allproducts') {
             $('.autohideshow').show();
-        } else {
+        }
+        else {
             $('.autohideshow').hide();
             $('.subcats_' + $(this).attr('data-subcategory')).show();
         }
     });
-    $('.form_non_branded_mailer').click(function() {
-        if(alldetailobj.zone_id=='1') {
-            if($(this).is(":checked")) {
-                if(addontotalobj.totalprice>0) {
-                    if(us_cost_methad_obj.us_cost_of_method>0) {
-                        $("#showzonevariation").html("$"+(addontotalobj.totalprice + parseFloat($(this).val()) + parseFloat(us_cost_methad_obj.us_cost_of_method)));
-                    } else {
-                        $("#showzonevariation").html("$"+(addontotalobj.totalprice + parseFloat($(this).val())));
-                    }
-                } else {
-                    if(us_cost_methad_obj.us_cost_of_method>0) {
-                        $("#showzonevariation").html("$"+(alldetailobj.totalprice + parseFloat($(this).val()) + parseFloat(us_cost_methad_obj.us_cost_of_method)));
-                    } else {
-                        $("#showzonevariation").html("$"+(alldetailobj.totalprice + parseFloat($(this).val())));
-                    }
-                }        
-                non_branded_mailerobj[fromidobj.fromid] = {"form_non_branded_mailer" : $(this).val()};  console.log(non_branded_mailerobj);    
-            }  else  {
-                delete non_branded_mailerobj[fromidobj.fromid];        console.log(non_branded_mailerobj); 
-                if(addontotalobj.totalprice>0) {
-                    if(us_cost_methad_obj.us_cost_of_method>0) {
-                        $("#showzonevariation").html("$"+(addontotalobj.totalprice + parseFloat(us_cost_methad_obj.us_cost_of_method)));    
-                    } else {
-                        $("#showzonevariation").html("$"+addontotalobj.totalprice);
-                    }
-                } else {
-                   if(us_cost_methad_obj.us_cost_of_method>0) {
-                        $("#showzonevariation").html("$"+(alldetailobj.totalprice + parseFloat(us_cost_methad_obj.us_cost_of_method)));    
-                    } else {
-                        $("#showzonevariation").html("$"+alldetailobj.totalprice);
-                    } 
-                }       
+    function nonbranded_mail_funct() {
+        if($(this).is(":checked")) {
+            if(alldetailobj.zone_id!='1') {
+                $("#showzonevariationtotal").html("$"+(alldetailobj.totalprice + parseFloat($(this).val())));
             }
-        } else {
+            else {
                 $("#showzonevariation").html("$"+(alldetailobj.totalprice + parseFloat($(this).val())));
-            }
-    });
+            }    
+            sltdeliveryobj[fromidobj.fromid] = {"form_non_branded_mailer" : $(this).val()};
+            console.log(sltdeliveryobj);    
+        }
+        else  {
+               $("#showzonevariationtotal").html("$"+alldetailobj.totalprice);
+            delete sltdeliveryobj[fromidobj.fromid];
+            console.log(sltdeliveryobj); 
+        }    
+    }
+    $(".form_non_branded_mailer").on("click",nonbranded_mail_funct); 
     function datepickerfunct(fromid) {
         if(fromid!='3') {
             if(alldetailobj.zone_id=='1') {
@@ -491,37 +447,12 @@ jQuery(document).ready(function($) {
             $(".datepicker").datepicker({ minDate:'0' });
         }
     }
-    $('.select_shipping_method').change(function() {  
-        var us_cost_method = $(this).attr('data-uscostofmethod');
-        us_cost_methad_obj = {'us_cost_of_method':us_cost_method}; console.log(us_cost_methad_obj);
-        if(us_cost_method>0) {
-            if((addontotalobj.totalprice>0)&&(alldetailobj.zone_id=='1')) {
-                if($('.form_non_branded_mailer').is(':checked')) {
-                    $("#showzonevariation").html("$"+(parseFloat(us_cost_method) + parseFloat(addontotalobj.totalprice) + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer) ));
-                } else {
-                   $("#showzonevariation").html("$"+(parseFloat(us_cost_method) + parseFloat(addontotalobj.totalprice) )); 
-                }    
-            } else {
-                if($('.form_non_branded_mailer').is(':checked')) {
-                    $("#showzonevariation").html("$"+(alldetailobj.totalprice + parseFloat(us_cost_method) + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer)));
-                } else {
-                    $("#showzonevariation").html("$"+(alldetailobj.totalprice + parseFloat(us_cost_method)));
-                }    
-            }
+    $('.select_shipping_method').change(function() {
+        var us_cost_of_method = $(this).attr('data-uscostofmethod');
+        if(us_cost_of_method!='') {
+            $("#showzonevariation").html("$"+(alldetailobj.totalprice + parseFloat(us_cost_of_method)));
         } else {
-            if((addontotalobj.totalprice>0)&&(alldetailobj.zone_id=='1')) {
-                if($('.form_non_branded_mailer').is(':checked')) {
-                    $("#showzonevariation").html("$"+(addontotalobj.totalprice + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer)));
-                } else {
-                    $("#showzonevariation").html("$"+(addontotalobj.totalprice));
-                }
-            } else {
-                if($('.form_non_branded_mailer').is(':checked')) {
-                    $("#showzonevariation").html("$"+(alldetailobj.totalprice + parseFloat(non_branded_mailerobj[fromidobj.fromid].form_non_branded_mailer)));
-                } else {
-                   $("#showzonevariation").html("$"+alldetailobj.totalprice); 
-                }  
-            }    
+            $("#showzonevariation").html("$"+alldetailobj.totalprice);
         }    
     });    
 });
