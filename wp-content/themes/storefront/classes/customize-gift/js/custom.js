@@ -160,7 +160,7 @@ jQuery(document).ready(function($) {
         }    
     });
     var alldetailobj = {}; var country_obj = {};  var grindtypeobj = {}; var gearobj = {}; var addontotalobj = {};
-    var form_non_branded_mailer = 0;  var prodaddtol = 0; var us_cost_method =0; var allsteptotal =[];
+    var allsteptotal ={}; var us_cost_methodobj = {}; var non_branded_mailer =  {};
     var terms_data,productsize,productduration,productfrequency,zone_id,grindtype,ground_grind_type;    
     function addcountryselect() {        /*for first step work*/ 
         var zone_id = $(".mycountryclass").val();
@@ -189,8 +189,13 @@ jQuery(document).ready(function($) {
             {
                 if(zone_id=='1') {
                     allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
+                    $('#showzonevariationtotal').show();
                 } else {
                     allconditionscheck(zone_id,dataResult.dataterm,productsize,productduration,productfrequency);
+                    delete allsteptotal.total_step_2;
+                    allsteptotal = {'total_step_1':alldetailobj.totalprice ,'total_step_2' : 0 , 'total_step_3':non_branded_mailer.form_non_branded_mailer,'total_step_4':0}
+                    totalpricefunct(allsteptotal);
+                    $('#showzonevariationtotal').hide();
                 }
                 if(dataResult !=="null") {
                     country_obj[zone_id] = dataResult;
@@ -308,24 +313,27 @@ jQuery(document).ready(function($) {
     function allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency) {  /*for first step work*/
         var resultvariation = checkedvariation.filter(firstobject => firstobject.attributes.attribute_pa_size === productsize && firstobject.attributes.attribute_pa_duration === productduration && firstobject.attributes.attribute_pa_frequency === productfrequency)[0];
         if(resultvariation) {
-            $("#showzonevariation").html("$"+resultvariation.display_price);
-            /*for second step work*/
-            var term_id = shipping_term_id[resultvariation.variation_id];
+            /*$("#showzonevariation").html("$"+resultvariation.display_price); */
+            var term_id = shipping_term_id[resultvariation.variation_id]; /*for second step work*/
             if(terms_data) {
                 var resultterms = terms_data.filter(termobject => termobject.term_id === term_id)[0];
                 var totalprice = (parseInt(resultvariation.display_price) + parseInt(resultterms.cost));
                 alldetailobj = { 'zone_id' : zone_id,'productsize' : productsize,'productfrequency' : productfrequency,'productduration':productduration,'totalprice':totalprice }; /*for second step work*/
-                
+                allsteptotal = {'total_step_1':alldetailobj.totalprice ,'total_step_2' : prodaddtol , 'total_step_3':non_branded_mailer.form_non_branded_mailer,'total_step_4':us_cost_methodobj.us_cost_method};
+                console.log(allsteptotal);
                 console.log(alldetailobj); console.log(grindtypeobj);
                 $(".geartab").hide();
-                $("#showzonevariationtotal").html("total $" + totalprice);
+                /*$("#showzonevariationtotal").html("total $" + totalprice);*/
             } else {
                 alldetailobj = { 'zone_id' : zone_id,'productsize' : productsize,'productfrequency' : productfrequency,'productduration' : productduration,'totalprice':resultvariation.display_price };
                 console.log(alldetailobj); console.log(grindtypeobj);
-                 $(".geartab").show(); /*for first step work*/
+                allsteptotal = {'total_step_1':alldetailobj.totalprice ,'total_step_2' : prodaddtol , 'total_step_3':non_branded_mailer.form_non_branded_mailer,'total_step_4':us_cost_methodobj.us_cost_method};
+                console.log(allsteptotal);                
+                $(".geartab").show(); /*for first step work*/
                 $("#showzonevariationtotal").html("Free shipping available");
             }                
         }
+        totalpricefunct(allsteptotal);
     }
     allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
     var prodaddtol = 0; var i = 0; /* function for product add and added */
@@ -340,6 +348,7 @@ jQuery(document).ready(function($) {
             prodaddtol -= parseFloat($(this).val());
             $(".changedata_"+pdtidaddon).html("ADD");
             delete gearobj[pdtidaddon];
+        console.log(allsteptotal);
         } console.log(gearobj);
         if(Object.keys(gearobj).length>0) {
             $(".panelform3").hide();
@@ -348,9 +357,9 @@ jQuery(document).ready(function($) {
         }
         var addonvartotal = alldetailobj.totalprice + prodaddtol;
         addontotalobj = { 'totalprice' : addonvartotal ,'prodaddtol' : prodaddtol };
-        allsteptotal.push(alldetailobj.totalprice + prodaddtol);
+        allsteptotal = {'total_step_1':alldetailobj.totalprice ,'total_step_2' : prodaddtol , 'total_step_3':non_branded_mailer.form_non_branded_mailer,'total_step_4':us_cost_methodobj.us_cost_method};
+        totalpricefunct(allsteptotal);
         console.log(allsteptotal);
-        $("#showzonevariation").html("$"+addonvartotal);  console.log(addontotalobj);   
     }); /* function for product product show by category  and sub category */
     $('.selectprosubcat').click(function() {
         if($(this).attr('data-subcategory')=='allproducts') {
@@ -363,13 +372,16 @@ jQuery(document).ready(function($) {
     $('.form_non_branded_mailer').click(function() {
         if($('.form_non_branded_mailer').is(':checked')) {
             var form_non_branded_mailer =  $('.form_non_branded_mailer').val();
-            allsteptotal.push(alldetailobj.totalprice + prodaddtol + parseFloat(form_non_branded_mailer));
+            non_branded_mailer =  {'form_non_branded_mailer' :form_non_branded_mailer }; 
+            allsteptotal = {'total_step_1':alldetailobj.totalprice ,'total_step_2' : prodaddtol , 'total_step_3':non_branded_mailer.form_non_branded_mailer,'total_step_4':us_cost_methodobj.us_cost_method};
             console.log(allsteptotal);
+            totalpricefunct(allsteptotal);
         } else {
-            allsteptotal.push(alldetailobj.totalprice + prodaddtol + parseFloat(0));
+            delete  non_branded_mailer.form_non_branded_mailer;
+            allsteptotal = {'total_step_1':alldetailobj.totalprice ,'total_step_2' : prodaddtol , 'total_step_3':0,'total_step_4':us_cost_methodobj.us_cost_method};
             console.log(allsteptotal);
-        } 
-        console.log(allsteptotal);   
+            totalpricefunct(allsteptotal);
+        }  
     });
     function datepickerfunct(fromid) {
         if(fromid!='3') {
@@ -424,12 +436,32 @@ jQuery(document).ready(function($) {
         }
     }
     $('.select_shipping_method').change(function() {  
-        var us_cost_method = $(this).attr('data-uscostofmethod');
+        var us_cost_method = ($(this).attr('data-uscostofmethod')) ? $(this).attr('data-uscostofmethod') : 0 ;
+        us_cost_methodobj = {'us_cost_method':us_cost_method};
         if(us_cost_method>0) {
-            
+            allsteptotal = {'total_step_1':alldetailobj.totalprice ,'total_step_2' : prodaddtol , 'total_step_3':non_branded_mailer.form_non_branded_mailer,'total_step_4':us_cost_methodobj.us_cost_method};
+            console.log(allsteptotal);
         } else {
-            
+            delete us_cost_methodobj.us_cost_method;
+            allsteptotal = {'total_step_1':alldetailobj.totalprice ,'total_step_2' : prodaddtol , 'total_step_3':non_branded_mailer.form_non_branded_mailer,'total_step_4':0}
+            console.log(allsteptotal);
         }
-    });    
-     
+        totalpricefunct(allsteptotal);
+    });
+    function totalpricefunct(allsteptotal) {
+        var sumtotal = 0;
+        if(alldetailobj.zone_id!='1') {
+            delete allsteptotal.total_step_2;
+            allsteptotal = {'total_step_1':alldetailobj.totalprice ,'total_step_2' : 0 , 'total_step_3':non_branded_mailer.form_non_branded_mailer,'total_step_4':0}
+        }
+        $.each(allsteptotal, function(i, item) {
+            if(item>0) {
+                sumtotal += parseFloat(item);
+            }
+        });
+        if(sumtotal>0) {
+            console.log(sumtotal);
+            $("#showzonevariation").html("$"+sumtotal);
+        }    
+    }  
 });
