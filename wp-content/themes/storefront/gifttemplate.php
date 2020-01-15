@@ -23,7 +23,7 @@
 	$delivery_zones = WC_Shipping_Zones::get_zones();
 	$gift_sub_time = explode(':',get_option('gift_sub_time'));
 ?>
-<div class="container">
+<div class="container" id="divLoading">
 <form id="myForm">
 <div class="col-sm-10 borderright">
 	<div>
@@ -403,6 +403,7 @@
 			</div><!-- panel-group -->
 	</div>
 	<div class="tabs tabcontent_TIMING">
+	<div class="us_class_show_hide">
 	<?php
 		$zone_id='1'; /* by us country methods show */
 		foreach($delivery_zones[$zone_id]['shipping_methods'] as $sm_obj ) 
@@ -421,22 +422,21 @@
 				$us_shipping_mehtodid = $data[$zone_id]['shipping_methods'][$instance_id]['instance_id'];
 			} 
 			?>
-			<label <?php if(!empty(get_option( 'us_shipping_mehtod_disable' ))) { if(in_array($us_shipping_mehtodid,get_option( 'us_shipping_mehtod_disable' ))) { echo 'style="display:none;"'; } } ?> <?php if(get_option( 'us_shipping_mehtod_first' )==$us_shipping_mehtodid) { echo 'style="background-color:brown;"';	} ?>>
-				<input type="radio" class="select_shipping_method"  data-uscostofmethod="<?php echo $instance_settings['class_cost_85']; ?>" <?php if(get_option( 'us_shipping_mehtod_first' )==$us_shipping_mehtodid) {   echo 'checked';	} ?> name="us_shipping_mehtod" value="<?php echo $us_shipping_mehtodid; ?>"><?php echo $data[$zone_id]['shipping_methods'][$instance_id]['custom_name']; ?><br> <?php echo $instance_settings['shipping_msg']; ?><br>
+			<label <?php if(!empty(get_option( 'us_shipping_mehtod_disable' ))) { if(in_array($us_shipping_mehtodid,get_option( 'us_shipping_mehtod_disable' ))) { echo 'style="display:none;"'; } } ?> <?php if(get_option( 'us_shipping_mehtod_first' )==$us_shipping_mehtodid) { echo 'style="background-color:brown;"'; $selected_shipping_assign =  $instance_settings['shipping_assign'];	} ?>>
+				<input type="radio" class="select_shipping_method"  data-uscostofmethod="<?php echo $instance_settings['class_cost_85']; ?>" <?php if(get_option( 'us_shipping_mehtod_first' )==$us_shipping_mehtodid) {   echo 'checked';	} ?> name="us_shipping_mehtod" value="<?php echo $instance_settings['shipping_assign']; ?>"><?php echo $data[$zone_id]['shipping_methods'][$instance_id]['custom_name']; ?><br> <?php echo $instance_settings['shipping_msg']; ?><br>
 			<?php 
 				if($data[$zone_id]['shipping_methods'][$instance_id]['$method_id']=='free_shipping') {
 					echo 'FREE'; 
 				} else {	
 				echo "+ $".$instance_settings['class_cost_85']; 
 				}
-				if(($data[$zone_id]['shipping_methods'][$instance_id]['$method_id']=='free_shipping')&&(get_option( 'us_shipping_mehtod_first' )==$us_shipping_mehtodid)) {
-					$us_free_shipping_method_id = $us_shipping_mehtodid;
-				} 
+				 
 				?>
 			</label> &nbsp;&nbsp;
 			<?php
 		}
 	?>
+	</div>
 	<br><br><br>
 	<div class="datepicker"></div>
 	</div>
@@ -496,7 +496,7 @@ SUBTOTAL <span class="showzonevariationtotal" id="showzonevariation"></span>
 	var gifthour = <?php echo $gift_sub_time[0] ?>;
 	var giftmin = <?php echo $gift_sub_time[1] ?>;
 	var intl_calendar = "<?php echo get_option('intl_calendar') ?>";
-	var us_free_shipping_method_id = "<?php echo $us_free_shipping_method_id ?>";
+	var shipping_assigns = "<?php echo $selected_shipping_assign ?>";
 	var us_free_shipping_cal = "<?php echo get_option('us_free_shipping_cal') ?>";
 </script>	
 <?php  get_footer(); ?>

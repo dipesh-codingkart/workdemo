@@ -54,3 +54,14 @@ body, html {
 {
     text-align:left !important;
 }
+#divLoading.show
+{
+    z-index: 100;
+    background-image : url('http://loadinggif.com/images/image-selection/3.gif');
+    background-repeat : no-repeat;
+    background-position : center;
+    left : 0;
+    bottom : 0;
+    right : 0;
+    top : 0;
+}
