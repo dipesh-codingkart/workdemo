@@ -162,7 +162,7 @@ jQuery(document).ready(function($) {
     var alldetailobj = {}; var country_obj = {};  var grindtypeobj = {}; var gearobj = {}; var addontotalobj = {};
     var allsteptotal ={}; var us_cost_methodobj = {}; var non_branded_mailer =  {};  var loaded_country_obj = {};
     var terms_data,productsize,productduration,productfrequency,zone_id,grindtype,ground_grind_type;    
-    function addcountryselect() {        /*for first step work*/ 
+    function addcountryselect() {  /*for first step work*/ 
         var zone_id = $(".mycountryclass").val();
         var productsize = $('input[name="productsize"]:checked').val();
         var productduration = $('input[name="productduration"]:checked').val();
@@ -179,53 +179,105 @@ jQuery(document).ready(function($) {
         $(".oncountrychg").html('ADD');
         $(".ckprodadd").removeAttr('checked');
         $('.empty_for_country_ch').removeAttr('value');
-        $.ajax({
-            url: customurl,
-            type: "GET",
-            dataType: 'json',
-            data: {  zone_id: zone_id, productid: productid, },
-            cache: false,
-            success: function(dataResult)
-            {
-                if(zone_id=='1') {
-                    allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
-                    $('#showzonevariationtotal').show();
-                    $('.us_class_show_hide').show();
-                } else {
-                    allconditionscheck(zone_id,dataResult.dataterm,productsize,productduration,productfrequency);
-                    delete allsteptotal.total_of_addon;
-                    allsteptotal = {'variation_of_total':alldetailobj.totalprice ,'total_of_addon' : 0 , 'total_non_branded_mailer':non_branded_mailer.form_non_branded_mailer,'total_us_cost_method':0}
-                    totalpricefunct(allsteptotal);
-                    $('#showzonevariationtotal').hide();
-                    $('.us_class_show_hide').hide();
-                }
-                if(dataResult !=="null") {
-                    country_obj[zone_id] = dataResult;
-                }
-                if(Object.keys(dataResult.states).length>0) {
-                    if(fromidobj.fromid>0) {
-                        $(".statebycountry").addClass("form_state_"+fromidobj.fromid);
-                    }
-                    $(".statehideshow").show();
-                    var stateoutput = [];
-                    stateoutput.push('<option value="">Select State</option>');
-                    $.each(dataResult.states, function(key, value)
-                    {
-                        stateoutput.push('<option value="'+ key +'">'+ value +'</option>');
-                    });
-                    $('.statebycountry').html(stateoutput.join(''));
-                } else {
-                    $(".statebycountry").removeClass("form_state_1 form_state_2");
-                    $(".statehideshow").hide(); 
-                }
-                var countryoutput = [];
-                 countryoutput.push('<label class="control-label" >COUNTRY *</label><select name="country" disabled class="form-control" ><option value="'+ zone_id +'" selected>'+ dataResult.selected_country_name +'</option></select>');
-                $('.selectedcountry').html(countryoutput.join('')); 
+        
+        if(loaded_country_obj[zone_id])
+        {
+            setTimeout(function () {
+                $('.container').removeClass('mainloder');
+             }, 1000);
+            var dataResult = loaded_country_obj[zone_id];
+            if(zone_id=='1') {
+                allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
+                $('#showzonevariationtotal').show();
+                $('.us_class_show_hide').show();
+            } else {
+                allconditionscheck(zone_id,dataResult.dataterm,productsize,productduration,productfrequency);
+                delete allsteptotal.total_of_addon;
+                allsteptotal = {'variation_of_total':alldetailobj.totalprice ,'total_of_addon' : 0 , 'total_non_branded_mailer':non_branded_mailer.form_non_branded_mailer,'total_us_cost_method':0}
+                totalpricefunct(allsteptotal);
+                $('#showzonevariationtotal').hide();
+                $('.us_class_show_hide').hide();
             }
-        });  /*for second step work*/  
+            if(dataResult !=="null") {
+                country_obj[zone_id] = dataResult;
+            }
+            if(Object.keys(dataResult.states).length>0) {
+                if(fromidobj.fromid>0) {
+                    $(".statebycountry").addClass("form_state_"+fromidobj.fromid);
+                }
+                $(".statehideshow").show();
+                var stateoutput = [];
+                stateoutput.push('<option value="">Select State</option>');
+                $.each(dataResult.states, function(key, value)
+                {
+                    stateoutput.push('<option value="'+ key +'">'+ value +'</option>');
+                });
+                $('.statebycountry').html(stateoutput.join(''));
+            } else {
+                $(".statebycountry").removeClass("form_state_1 form_state_2");
+                $(".statehideshow").hide(); 
+            }
+            var countryoutput = [];
+            countryoutput.push('<label class="control-label" >COUNTRY *</label><select name="country" disabled class="form-control" ><option value="'+ zone_id +'" selected>'+ dataResult.selected_country_name +'</option></select>');
+            $('.selectedcountry').html(countryoutput.join('')); 
+        }
+        else
+        {
+            $('.container').addClass('mainloder');
+            $.ajax({
+                url: customurl,
+                type: "GET",
+                dataType: 'json',
+                data: {  zone_id: zone_id, productid: productid, },
+                cache: false,
+                success: function(dataResult)
+                {
+                    setTimeout(function () {
+                        $('.container').removeClass('mainloder');
+                     }, 1000);
+                    loaded_country_obj[zone_id] = dataResult; 
+                    if(zone_id=='1') {
+                        allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
+                        $('#showzonevariationtotal').show();
+                        $('.us_class_show_hide').show();
+                    } else {
+                        allconditionscheck(zone_id,dataResult.dataterm,productsize,productduration,productfrequency);
+                        delete allsteptotal.total_of_addon;
+                        allsteptotal = {'variation_of_total':alldetailobj.totalprice ,'total_of_addon' : 0 , 'total_non_branded_mailer':non_branded_mailer.form_non_branded_mailer,'total_us_cost_method':0}
+                        totalpricefunct(allsteptotal);
+                        $('#showzonevariationtotal').hide();
+                        $('.us_class_show_hide').hide();
+                    }
+                    if(dataResult !=="null") {
+                        country_obj[zone_id] = dataResult;
+                    }
+                    if(Object.keys(dataResult.states).length>0) {
+                        if(fromidobj.fromid>0) {
+                            $(".statebycountry").addClass("form_state_"+fromidobj.fromid);
+                        }
+                        $(".statehideshow").show();
+                        var stateoutput = [];
+                        stateoutput.push('<option value="">Select State</option>');
+                        $.each(dataResult.states, function(key, value)
+                        {
+                            stateoutput.push('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                        $('.statebycountry').html(stateoutput.join(''));
+                    } else {
+                        $(".statebycountry").removeClass("form_state_1 form_state_2");
+                        $(".statehideshow").hide(); 
+                    }
+                    var countryoutput = [];
+                    countryoutput.push('<label class="control-label" >COUNTRY *</label><select name="country" disabled class="form-control" ><option value="'+ zone_id +'" selected>'+ dataResult.selected_country_name +'</option></select>');
+                    $('.selectedcountry').html(countryoutput.join('')); 
+                }
+            });  /*for second step work*/ 
+        } 
+
     }   
     $(".mycountryclass").on("change",addcountryselect);
     addcountryselect(); 
+    
     function variationchangeandbydefault() {   /*for first step work*/
         var zone_id = $(".mycountryclass").val();
         var productsize = $('input[name="productsize"]:checked').val();
@@ -398,6 +450,21 @@ jQuery(document).ready(function($) {
     function datepickerfunct(fromid,shipping_assigns) {
         if(fromid!='3') {
             if(alldetailobj.zone_id=='1') {
+                if(alldetailobj.productsize=='world-coffee-sampler') {
+                    $(".datepicker").datepicker("destroy");
+                    datesArray = disable_tasting_kit_cal.split(", ");
+                    $('.world_coffee_sampler_firstclass').removeClass('active_method').attr("disabled", true);
+                    $('.world_coffee_sampler_priority').addClass("active_method");
+                    $('.not_cheked_priority').attr("data-uscostofmethod","0");
+                    $('.span_priority').hide();
+                    $('.p_priority').show();
+                } else {
+                    $('.world_coffee_sampler_firstclass').addClass('active_method').attr("disabled", false);
+                    $('.world_coffee_sampler_priority').removeClass("active_method");
+                    var us_cost_method1 = $('.not_cheked_priority').attr("data-uscostofmethod1");
+                    $('.not_cheked_priority').attr("data-uscostofmethod",us_cost_method1);
+                    $('.span_priority').show();
+                    $('.p_priority').hide();
                     if('firstclass'==shipping_assigns) {
                         $(".datepicker").datepicker("destroy");
                         datesArray = us_free_shipping_cal.split(", ");
@@ -405,7 +472,8 @@ jQuery(document).ready(function($) {
                     if(('priority'==shipping_assigns)||('overnight'==shipping_assigns)) {
                         $(".datepicker").datepicker("destroy");
                         datesArray = express_priority.split(", ");
-                    }   
+                    }
+                }           
             } else {
                 $(".datepicker").datepicker("destroy");
                 datesArray = intl_calendar.split(", ");
@@ -444,6 +512,7 @@ jQuery(document).ready(function($) {
             });
         }
         else {
+            $('.us_class_show_hide').hide();
             $(".datepicker").datepicker("destroy");
             $(".datepicker").datepicker({ minDate:'0' });
         }
@@ -451,6 +520,8 @@ jQuery(document).ready(function($) {
     $('.select_shipping_method').change(function() {  
         var us_cost_method = ($(this).attr('data-uscostofmethod')) ? $(this).attr('data-uscostofmethod') : 0 ;
         var shipping_assigns = $(this).val();
+            $('label.world_coffee_sampler_'+shipping_assigns).not(this).prop('checked', false).addClass('active_method');
+            $('label:has(input:not(:checked))').not(this).prop('checked', true).removeClass('active_method');
         us_cost_methodobj = {'us_cost_method':us_cost_method};
         if(us_cost_method>0) {
             allsteptotal = {'variation_of_total':alldetailobj.totalprice ,'total_of_addon' : prodaddtol , 'total_non_branded_mailer':non_branded_mailer.form_non_branded_mailer,'total_us_cost_method':us_cost_methodobj.us_cost_method};
@@ -470,7 +541,8 @@ jQuery(document).ready(function($) {
             delete allsteptotal.total_of_addon;
             allsteptotal = {'variation_of_total':alldetailobj.totalprice ,'total_of_addon' : 0 , 'total_non_branded_mailer':non_branded_mailer.form_non_branded_mailer,'total_us_cost_method':0}
         }
-        $.each(allsteptotal, function(index, value) {
+        $.each(allsteptotal, function(index, value) 
+        {
             if(value>0) {
                 sumtotal += parseFloat(value);
             }

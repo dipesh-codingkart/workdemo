@@ -14,5 +14,10 @@ jQuery(function($) {
         addDates: free_shipping_dates,
         altField: '.us_free_shipping_cal'
     });
+    var disable_tasting_kit_dates = ($('.disable_tasting_kit_cal').val()) ? $('.disable_tasting_kit_cal').val().split(', ') : 0 ;
+    $('.select_disable_tasting_kit_dates').multiDatesPicker({
+        addDates: disable_tasting_kit_dates,
+        altField: '.disable_tasting_kit_cal'
+    });
     $('.gift_sub_tp').timeselector();
 });  

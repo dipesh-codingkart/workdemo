@@ -82,7 +82,13 @@
 				<td>
 					<div class="select_free_shipping_dates"></div> <input type="hidden" name="us_free_shipping_cal" class="us_free_shipping_cal"  value="<?php echo get_option('us_free_shipping_cal'); ?>">
 				</td>
-			</tr>	
+			</tr>
+			<tr>
+				<td>Disable Dates Calender for Gift Tasting Kit</td>
+				<td>
+					<div class="select_disable_tasting_kit_dates"></div> <input type="hidden" name="disable_tasting_kit_cal" class="disable_tasting_kit_cal"  value="<?php echo get_option('disable_tasting_kit_cal'); ?>">
+				</td>
+			</tr>
 		</tbody>
 	</table>
 	<?php submit_button(); ?>

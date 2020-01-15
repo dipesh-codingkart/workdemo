@@ -103,5 +103,5 @@
 		}
 	}
 	$data[$zones_id];
-	echo json_encode(array('shipping_methods'=>$method_ids,'selected_country_name'=>$zone_location_name,'dataterm'=>$terms_data ,'states'=>$default_county_states));
+	echo json_encode(array('zone_id'=>$zones_id,'shipping_methods'=>$method_ids,'selected_country_name'=>$zone_location_name,'dataterm'=>$terms_data ,'states'=>$default_county_states));
 ?>

@@ -37,7 +37,8 @@ class managedate
         register_setting('managedate_funct', 'intl_calendar');
         register_setting('managedate_funct', 'us_shipping_mehtod_disable');
         register_setting('managedate_funct', 'us_shipping_mehtod_first');
-        register_setting('managedate_funct', 'us_free_shipping_cal');
+		register_setting('managedate_funct', 'us_free_shipping_cal');
+		register_setting('managedate_funct', 'disable_tasting_kit_cal');
     }
 	public function managedate_funct()
 	{

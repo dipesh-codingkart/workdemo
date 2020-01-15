@@ -54,7 +54,7 @@ body, html {
 {
     text-align:left !important;
 }
-#divLoading.show
+.mainloder
 {
     z-index: 100;
     background-image : url('http://loadinggif.com/images/image-selection/3.gif');
@@ -64,4 +64,7 @@ body, html {
     bottom : 0;
     right : 0;
     top : 0;
+}
+.active_method {
+    background-color:brown;
 }
