@@ -19,5 +19,10 @@ jQuery(function($) {
         addDates: disable_tasting_kit_dates,
         altField: '.disable_tasting_kit_cal'
     });
+    var selected_ground_grind_dates = ($('.ground_grind_dates').val()) ? $('.ground_grind_dates').val().split(', ') : 0 ;
+    $('.select_ground_grind_cal').multiDatesPicker({
+        addDates: selected_ground_grind_dates,
+        altField: '.ground_grind_dates'
+    });
     $('.gift_sub_tp').timeselector();
 });  

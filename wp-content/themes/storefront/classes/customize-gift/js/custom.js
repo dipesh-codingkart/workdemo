@@ -184,7 +184,7 @@ jQuery(document).ready(function($) {
         {
             setTimeout(function () {
                 $('.container').removeClass('mainloder');
-             }, 1000);
+             }, 800);
             var dataResult = loaded_country_obj[zone_id];
             if(zone_id=='1') {
                 allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
@@ -234,7 +234,7 @@ jQuery(document).ready(function($) {
                 {
                     setTimeout(function () {
                         $('.container').removeClass('mainloder');
-                     }, 1000);
+                     }, 800);
                     loaded_country_obj[zone_id] = dataResult; 
                     if(zone_id=='1') {
                         allconditionscheck(zone_id,terms_data,productsize,productduration,productfrequency);
@@ -381,7 +381,14 @@ jQuery(document).ready(function($) {
             } else {
                 alldetailobj = { 'zone_id' : zone_id,'productsize' : productsize,'productfrequency' : productfrequency,'productduration' : productduration,'totalprice':resultvariation.display_price };
                 console.log(alldetailobj); console.log(grindtypeobj);
-                allsteptotal = {'variation_of_total':alldetailobj.totalprice ,'total_of_addon' : prodaddtol , 'total_non_branded_mailer':non_branded_mailer.form_non_branded_mailer,'total_us_cost_method':us_cost_methodobj.us_cost_method};
+                if(alldetailobj.productsize=='world-coffee-sampler')
+                {
+                    allsteptotal = {'variation_of_total':alldetailobj.totalprice ,'total_of_addon' : prodaddtol , 'total_non_branded_mailer':non_branded_mailer.form_non_branded_mailer,'total_us_cost_method':0};
+                }
+                else
+                {
+                    allsteptotal = {'variation_of_total':alldetailobj.totalprice ,'total_of_addon' : prodaddtol , 'total_non_branded_mailer':non_branded_mailer.form_non_branded_mailer,'total_us_cost_method':us_cost_methodobj.us_cost_method};
+                }
                 console.log(allsteptotal);                
                 $(".geartab").show(); /*for first step work*/
                 $("#showzonevariationtotal").html("Free shipping available");
@@ -450,38 +457,85 @@ jQuery(document).ready(function($) {
     function datepickerfunct(fromid,shipping_assigns) {
         if(fromid!='3') {
             if(alldetailobj.zone_id=='1') {
-                if(alldetailobj.productsize=='world-coffee-sampler') {
-                    $(".datepicker").datepicker("destroy");
-                    datesArray = disable_tasting_kit_cal.split(", ");
+                if(alldetailobj.productsize=='world-coffee-sampler')
+                {
+                    if(grindtypeobj.grindtype=='ground')
+                    {
+                        $(".datepicker").datepicker("destroy");
+                        var ground_grind_dates_arr = ground_grind_dates.split(", ");
+                        var disable_tasting_kit_arr = disable_tasting_kit_cal.split(", ");
+                        var intersection_grind_tasting_kit = ground_grind_dates_arr.filter(e => disable_tasting_kit_arr.indexOf(e) !== -1);
+                        datesArray = intersection_grind_tasting_kit;
+                    }
+                    else
+                    {    
+                        $(".datepicker").datepicker("destroy");
+                        datesArray = disable_tasting_kit_cal.split(", ");   
+                    }
                     $('.world_coffee_sampler_firstclass').removeClass('active_method').attr("disabled", true);
                     $('.world_coffee_sampler_priority').addClass("active_method");
                     $('.not_cheked_priority').attr("data-uscostofmethod","0");
                     $('.span_priority').hide();
                     $('.p_priority').show();
-                } else {
+                }
+                else
+                {
                     $('.world_coffee_sampler_firstclass').addClass('active_method').attr("disabled", false);
-                    $('.world_coffee_sampler_priority').removeClass("active_method");
+                    $('.world_coffee_sampler_priority').removeClass("active_method").attr("checked", false);
                     var us_cost_method1 = $('.not_cheked_priority').attr("data-uscostofmethod1");
                     $('.not_cheked_priority').attr("data-uscostofmethod",us_cost_method1);
                     $('.span_priority').show();
                     $('.p_priority').hide();
                     if('firstclass'==shipping_assigns) {
-                        $(".datepicker").datepicker("destroy");
-                        datesArray = us_free_shipping_cal.split(", ");
+                        if(grindtypeobj.grindtype=='ground')
+                        {
+                            $(".datepicker").datepicker("destroy");
+                            var ground_grind_dates_arr = ground_grind_dates.split(", ");
+                            var us_free_shipping_arr = us_free_shipping_cal.split(", ");
+                            var intersection_grind_us_free_shipp = ground_grind_dates_arr.filter(e => us_free_shipping_arr.indexOf(e) !== -1);
+                            datesArray = intersection_grind_us_free_shipp;
+                        }
+                        else
+                        {
+                            $(".datepicker").datepicker("destroy");
+                            datesArray = us_free_shipping_cal.split(", ");
+                        }    
                     }
                     if(('priority'==shipping_assigns)||('overnight'==shipping_assigns)) {
-                        $(".datepicker").datepicker("destroy");
-                        datesArray = express_priority.split(", ");
+                        if(grindtypeobj.grindtype=='ground')
+                        {
+                            $(".datepicker").datepicker("destroy");
+                            var ground_grind_dates_arr = ground_grind_dates.split(", ");
+                            var express_priority_arr = express_priority.split(", ");
+                            var intersection_grind_express_priority = ground_grind_dates_arr.filter(e => express_priority_arr.indexOf(e) !== -1);
+                            datesArray = intersection_grind_express_priority;
+                        }
+                        else
+                        {
+                            $(".datepicker").datepicker("destroy");
+                            datesArray = express_priority.split(", ");
+                        }    
                     }
                 }           
             } else {
-                $(".datepicker").datepicker("destroy");
-                datesArray = intl_calendar.split(", ");
+                if(grindtypeobj.grindtype=='ground')
+                {
+                    $(".datepicker").datepicker("destroy");
+                    var ground_grind_dates_arr = ground_grind_dates.split(", ");
+                    var intl_calendar_arr = intl_calendar.split(", ");
+                    var intersection_grind_intl_calendar = ground_grind_dates_arr.filter(e => intl_calendar_arr.indexOf(e) !== -1);
+                    datesArray = intersection_grind_intl_calendar;
+                }
+                else
+                {
+                    $(".datepicker").datepicker("destroy");
+                    datesArray = intl_calendar.split(", ");
+                }   
             }
             var availableDates = [];
             var todaydate = ("0" + new Date().getMonth()+1).slice(-2) + "/" + ("0" + new Date().getDate()).slice(-2) + "/" + new Date().getFullYear();
             datesArray.forEach(function (val) {
-                if(todaydate<val) { /* current date se agge  ki sari dates condition */
+                if(todaydate<val) { /* current date se agge  ki all dates ki condition */
                     availableDates.push(val); 
                 }
                 if(todaydate==val) { /* current date  ki  condition */

@@ -431,7 +431,7 @@
 						if($data[$zone_id]['shipping_methods'][$instance_id]['$method_id']=='free_shipping') {
 							echo 'FREE'; 
 						} else {	
-						echo "+ $ ".$instance_settings['class_cost_85']; 
+							echo "+ $ ".$instance_settings['class_cost_85']; 
 						} 
 					?>
 				</span>		
@@ -503,5 +503,6 @@ SUBTOTAL <span class="showzonevariationtotal" id="showzonevariation"></span>
 	var shipping_assigns = "<?php echo $selected_shipping_assign ?>";
 	var us_free_shipping_cal = "<?php echo get_option('us_free_shipping_cal') ?>";
 	var disable_tasting_kit_cal = "<?php echo get_option('disable_tasting_kit_cal') ?>";
+	var ground_grind_dates = "<?php echo get_option('ground_grind_dates') ?>";
 </script>	
 <?php  get_footer(); ?>

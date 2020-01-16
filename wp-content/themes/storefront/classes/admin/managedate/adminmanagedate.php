@@ -89,6 +89,12 @@
 					<div class="select_disable_tasting_kit_dates"></div> <input type="hidden" name="disable_tasting_kit_cal" class="disable_tasting_kit_cal"  value="<?php echo get_option('disable_tasting_kit_cal'); ?>">
 				</td>
 			</tr>
+			<tr>
+				<td>Enable Dates Calender for Gift (Ground Grind Type)</td>
+				<td>
+					<div class="select_ground_grind_cal"></div> <input type="hidden" name="ground_grind_dates" class="ground_grind_dates"  value="<?php echo get_option('ground_grind_dates'); ?>">
+				</td>
+			</tr>			
 		</tbody>
 	</table>
 	<?php submit_button(); ?>
