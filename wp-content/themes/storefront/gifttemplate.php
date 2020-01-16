@@ -504,5 +504,6 @@ SUBTOTAL <span class="showzonevariationtotal" id="showzonevariation"></span>
 	var us_free_shipping_cal = "<?php echo get_option('us_free_shipping_cal') ?>";
 	var disable_tasting_kit_cal = "<?php echo get_option('disable_tasting_kit_cal') ?>";
 	var ground_grind_dates = "<?php echo get_option('ground_grind_dates') ?>";
+	var holiday_dates = "<?php echo get_option('holiday_dates') ?>";
 </script>	
 <?php  get_footer(); ?>

@@ -547,9 +547,9 @@ jQuery(document).ready(function($) {
                     }
                 }
             });
-            function availabledate(date) { /* for available dates */
+            function availabledate(date) { /* for available dates and holiday's dates  */
                 alldmy = ("0" + date.getMonth()+1).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear();
-                if ($.inArray(alldmy, availableDates) !== -1) {
+                if(($.inArray(alldmy, availableDates) !== -1)&&(holiday_dates.indexOf(alldmy) == -1)) {
                     return [true, "","Available"];
                 } else {
                     return [false,"","unAvailable"];

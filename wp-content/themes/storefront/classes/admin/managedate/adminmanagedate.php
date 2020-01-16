@@ -94,6 +94,12 @@
 				<td>
 					<div class="select_ground_grind_cal"></div> <input type="hidden" name="ground_grind_dates" class="ground_grind_dates"  value="<?php echo get_option('ground_grind_dates'); ?>">
 				</td>
+			</tr>
+			<tr>
+				<td>Select Dates for Holiday's</td>
+				<td>
+					<div class="select_holidays_cal"></div> <input type="hidden" name="holiday_dates" class="holiday_dates"  value="<?php echo get_option('holiday_dates'); ?>">
+				</td>
 			</tr>			
 		</tbody>
 	</table>

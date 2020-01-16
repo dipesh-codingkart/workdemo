@@ -24,5 +24,10 @@ jQuery(function($) {
         addDates: selected_ground_grind_dates,
         altField: '.ground_grind_dates'
     });
+    var selected_holiday_dates = ($('.holiday_dates').val()) ? $('.holiday_dates').val().split(', ') : 0 ;
+    $('.select_holidays_cal').multiDatesPicker({
+        addDates: selected_holiday_dates,
+        altField: '.holiday_dates'
+    });
     $('.gift_sub_tp').timeselector();
 });  

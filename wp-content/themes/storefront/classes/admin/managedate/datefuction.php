@@ -40,6 +40,7 @@ class managedate
 		register_setting('managedate_funct', 'us_free_shipping_cal');
 		register_setting('managedate_funct', 'disable_tasting_kit_cal');
 		register_setting('managedate_funct', 'ground_grind_dates');
+		register_setting('managedate_funct', 'holiday_dates');
     }
 	public function managedate_funct()
 	{
