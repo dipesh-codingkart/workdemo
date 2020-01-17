@@ -68,3 +68,19 @@ body, html {
 .active_method {
     background-color:brown;
 }
+  .dp-highlight .ui-state-default {
+          background: #484 !important;
+          color: #FFF !important;
+        }
+        .ui-datepicker.ui-datepicker-multi  {
+          width: 100% !important;
+        }
+        .ui-datepicker-multi .ui-datepicker-group {
+        float:none !important;
+        }
+        #datepicker {
+          height: 300px !important;
+          overflow-x: scroll !important;
+        }
+.ui-widget { font-size: 100% !important }
+

@@ -484,7 +484,15 @@
 </form>	
 </div>
 <div>
+<div id="widgetField"><span></span></div>
+<p>
 	
+            Dates:
+              <label><b>To:</b></label>
+            <input type="text" id="input1" size="10">
+                <label><b>From:</b></label>
+            <div id="date2"></div>
+          </p>
 <br><br><br>
 SUBTOTAL <span class="showzonevariationtotal" id="showzonevariation"></span>
 &nbsp;&nbsp;&nbsp; <span id="showzonevariationtotal">Free shipping available</span>
