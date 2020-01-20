@@ -159,8 +159,10 @@ jQuery(document).ready(function($) {
             $(".cond_email_address").removeClass("form_rec_email_"+fromidobj.fromid);
         }    
     });
-    var alldetailobj = {}; var country_obj = {};  var grindtypeobj = {}; var gearobj = {}; var addontotalobj = {};
-    var allsteptotal ={}; var us_cost_methodobj = {}; var non_branded_mailer =  {};  var loaded_country_obj = {};
+    var alldetailobj = {};             var country_obj = {};            var grindtypeobj = {}; 
+    var gearobj = {};                  var addontotalobj = {};          var allsteptotal ={}; 
+    var us_cost_methodobj = {};        var non_branded_mailer =  {};    var loaded_country_obj = {};
+    var startend_DateObj = {};
     var terms_data,productsize,productduration,productfrequency,zone_id,grindtype,ground_grind_type;    
     function addcountryselect() {  /*for first step work*/ 
         var zone_id = $(".mycountryclass").val();
@@ -464,15 +466,15 @@ jQuery(document).ready(function($) {
                     if(grindtypeobj.grindtype=='ground')
                     {
                         $(".datepicker").datepicker("destroy");
-                        var ground_grind_dates_arr = ground_grind_dates.split(", ");
-                        var disable_tasting_kit_arr = disable_tasting_kit_cal.split(", ");
+                        var ground_grind_dates_arr = ground_grind_dates;
+                        var disable_tasting_kit_arr = disable_tasting_kit_cal;
                         var intersection_grind_tasting_kit = ground_grind_dates_arr.filter(e => disable_tasting_kit_arr.indexOf(e) !== -1);
                         datesArray = intersection_grind_tasting_kit;
                     }
                     else
                     {    
                         $(".datepicker").datepicker("destroy");
-                        datesArray = disable_tasting_kit_cal.split(", ");   
+                        datesArray = disable_tasting_kit_cal;   
                     }
                     $('.world_coffee_sampler_firstclass').removeClass('active_method').attr("disabled", true);
                     $('.world_coffee_sampler_priority').addClass("active_method");
@@ -492,30 +494,30 @@ jQuery(document).ready(function($) {
                         if(grindtypeobj.grindtype=='ground')
                         {
                             $(".datepicker").datepicker("destroy");
-                            var ground_grind_dates_arr = ground_grind_dates.split(", ");
-                            var us_free_shipping_arr = us_free_shipping_cal.split(", ");
+                            var ground_grind_dates_arr = ground_grind_dates;
+                            var us_free_shipping_arr = us_free_shipping_cal;
                             var intersection_grind_us_free_shipp = ground_grind_dates_arr.filter(e => us_free_shipping_arr.indexOf(e) !== -1);
                             datesArray = intersection_grind_us_free_shipp;
                         }
                         else
                         {
                             $(".datepicker").datepicker("destroy");
-                            datesArray = us_free_shipping_cal.split(", ");
+                            datesArray = us_free_shipping_cal;
                         }    
                     }
                     if(('priority'==shipping_assigns)||('overnight'==shipping_assigns)) {
                         if(grindtypeobj.grindtype=='ground')
                         {
                             $(".datepicker").datepicker("destroy");
-                            var ground_grind_dates_arr = ground_grind_dates.split(", ");
-                            var express_priority_arr = express_priority.split(", ");
+                            var ground_grind_dates_arr = ground_grind_dates;
+                            var express_priority_arr = express_priority;
                             var intersection_grind_express_priority = ground_grind_dates_arr.filter(e => express_priority_arr.indexOf(e) !== -1);
                             datesArray = intersection_grind_express_priority;
                         }
                         else
                         {
                             $(".datepicker").datepicker("destroy");
-                            datesArray = express_priority.split(", ");
+                            datesArray = express_priority;
                         }    
                     }
                 }           
@@ -523,20 +525,22 @@ jQuery(document).ready(function($) {
                 if(grindtypeobj.grindtype=='ground')
                 {
                     $(".datepicker").datepicker("destroy");
-                    var ground_grind_dates_arr = ground_grind_dates.split(", ");
-                    var intl_calendar_arr = intl_calendar.split(", ");
+                    var ground_grind_dates_arr = ground_grind_dates;
+                    var intl_calendar_arr = intl_calendar;
                     var intersection_grind_intl_calendar = ground_grind_dates_arr.filter(e => intl_calendar_arr.indexOf(e) !== -1);
                     datesArray = intersection_grind_intl_calendar;
                 }
                 else
                 {
                     $(".datepicker").datepicker("destroy");
-                    datesArray = intl_calendar.split(", ");
+                    datesArray = intl_calendar;
                 }   
             }
-            var availableDates = [];
             var todaydate = ("0" + new Date().getMonth()+1).slice(-2) + "/" + ("0" + new Date().getDate()).slice(-2) + "/" + new Date().getFullYear();
-            datesArray.forEach(function (val) {
+            var show_datesArr = datesArray.filter((holiday_date_remove) => !holiday_dates.includes(holiday_date_remove)); /* holiday dates
+               remove form availableDates */
+            var availableDates = [];
+            show_datesArr.forEach(function (val) {
                 if(todaydate<val) { /* current date se agge  ki all dates ki condition */
                     availableDates.push(val); 
                 }
@@ -544,17 +548,18 @@ jQuery(document).ready(function($) {
                     var dt = new Date(todaydate);                    
                     dt.setHours(dt.getHours() + gifthour);
                     dt.setMinutes(dt.getMinutes() + giftmin);
-                    if(dt.getTime() > new Date().getTime() ) {
+                    if(dt.getTime() > new Date().getTime()) {
                         availableDates.push(val);
                     }
                 }
             });
-            function availabledate(date) { /* for available dates and holiday's dates  */
+            function availabledate(date) { /* for available dates  */
+                var startdate1 = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $("#input1").val());
+                var enddate2 = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $("#input2").val());
                 alldmy = ("0" + date.getMonth()+1).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear();
-                if(($.inArray(alldmy, availableDates) !== -1)&&(holiday_dates.indexOf(alldmy) == -1)) {
-                    console.log(availableDates);
-                    return [true, "","Available"];
-                   // return [true, date1 && ((date.getTime() == date1()) || (date2 && date >= date1 && date <= date2)) ? "dp-highlight" : ""];
+                if($.inArray(alldmy, availableDates) !== -1) {
+                    //return [true, "","Available"];
+                    return [true, startdate1 && ((date.getTime() == startdate1.getTime()) || (enddate2 && date >= startdate1 && date <= enddate2)) ? "dp-highlight" : ""];
                 } else {
                     return [false,"","unAvailable"];
                 }
@@ -568,10 +573,27 @@ jQuery(document).ready(function($) {
                 beforeShowDay: availabledate,
                 defaultDate: get_default_date(),
                 onSelect: function (dateText, inst) {
-                    var startDate = new Date(dateText);
-                    var day = 60 * 60 * 24 * 4000; // seconds * minutes * hours * milliseconds = 1 day
-                    var endDate = new Date(startDate.getTime() + day);
-                    console.log(endDate);
+                    var select_start_date = new Date(dateText);
+                    var day_1 = 60 * 60 * 24 * 1000;  /* seconds * minutes * hours * milliseconds = 1 day */
+                    var startDate =   new Date(select_start_date.getTime() + day_1);
+                    var startDate_formate = ("0" + startDate.getMonth()+1).slice(-2) + "/" + ("0" + startDate.getDate()).slice(-2) + "/" + startDate.getFullYear();
+                    var day_4 = 60 * 60 * 24 * 4000;
+                    var endDate = new Date(select_start_date.getTime() + day_4);
+                    var endDate_formate = ("0" + endDate.getMonth()+parseInt(1)).slice(-2) + "/" + ("0" + endDate.getDate()).slice(-2) + "/" + endDate.getFullYear();
+                    $('.selected_start').html(startDate.getDate());
+                    $('.selected_end').html(endDate.getDate());
+                    startend_DateObj = { 'startdate' : startDate_formate, 'enddate' : endDate_formate };
+                    $("#input1").val(startDate_formate);
+                    $("#input2").val(endDate_formate);
+
+                    var from = new Date(startDate_formate);
+					var to = new Date(endDate_formate);
+
+					for (var day = from; day <= to; day.setDate(day.getDate() + 1)) {
+					    console.log(day);  
+					}
+                    $(this).datepicker();
+                    console.log(startend_DateObj);
                 }
             });
         }
@@ -616,7 +638,7 @@ jQuery(document).ready(function($) {
             $("#showzonevariation").html("$"+sumtotal);
         }    
     }
-    $(".ui-state-default").live("mouseenter", function() {
+    /* $(".ui-state-default").live("mouseenter", function() {
         $("#input1").val($(this).text()+"."+$(".ui-datepicker-month",$(this).parents()).text()+"."+$(".ui-datepicker-year",$(this).parents()).text());
-    }); 
+    }); */ 
 });

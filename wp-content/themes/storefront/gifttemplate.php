@@ -441,7 +441,11 @@
 	?>
 	</div>
 	<br><br><br>
-	<div class="datepicker"></div>
+		<div class="datepicker"></div>
+	<br>
+		ESTIMATED DELIVERY: 1/<span class="selected_start"></span> - 1/<span class="selected_end"></span>
+		<br><br>
+		<input type="text" id="input1"><input type="text" id="input2">
 	</div>
 	<div class="tabs tabcontent_REVIEW">
 		<h3>About</h3>
@@ -484,15 +488,6 @@
 </form>	
 </div>
 <div>
-<div id="widgetField"><span></span></div>
-<p>
-	
-            Dates:
-              <label><b>To:</b></label>
-            <input type="text" id="input1" size="10">
-                <label><b>From:</b></label>
-            <div id="date2"></div>
-          </p>
 <br><br><br>
 SUBTOTAL <span class="showzonevariationtotal" id="showzonevariation"></span>
 &nbsp;&nbsp;&nbsp; <span id="showzonevariationtotal">Free shipping available</span>
@@ -504,14 +499,14 @@ SUBTOTAL <span class="showzonevariationtotal" id="showzonevariation"></span>
 	var shipping_term_id = <?php echo $shipping_term_id ?>;
 	var productid = <?php echo $productid ?>;
 	var customurl = "<?php echo get_template_directory_uri().'/autoselectedcountry.php' ?>";
-	var express_priority = "<?php echo get_option('express_priority') ?>";
+	var express_priority = "<?php echo get_option('express_priority') ?>".split(", ");
 	var gifthour = <?php echo $gift_sub_time[0] ?>;
 	var giftmin = <?php echo $gift_sub_time[1] ?>;
-	var intl_calendar = "<?php echo get_option('intl_calendar') ?>";
+	var intl_calendar = "<?php echo get_option('intl_calendar') ?>".split(", ");
 	var shipping_assigns = "<?php echo $selected_shipping_assign ?>";
-	var us_free_shipping_cal = "<?php echo get_option('us_free_shipping_cal') ?>";
-	var disable_tasting_kit_cal = "<?php echo get_option('disable_tasting_kit_cal') ?>";
-	var ground_grind_dates = "<?php echo get_option('ground_grind_dates') ?>";
-	var holiday_dates = "<?php echo get_option('holiday_dates') ?>";
+	var us_free_shipping_cal = "<?php echo get_option('us_free_shipping_cal') ?>".split(", ");
+	var disable_tasting_kit_cal = "<?php echo get_option('disable_tasting_kit_cal') ?>".split(", ");
+	var ground_grind_dates = "<?php echo get_option('ground_grind_dates') ?>".split(", ");
+	var holiday_dates = "<?php echo get_option('holiday_dates') ?>".split(", ");
 </script>	
 <?php  get_footer(); ?>
